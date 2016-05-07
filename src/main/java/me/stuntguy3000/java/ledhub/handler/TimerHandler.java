@@ -12,34 +12,32 @@ public class TimerHandler {
     }
 
     public static void fadeColours(LEDColour current, LEDColour end, int totalTime) throws InterruptedException {
-        int differenceR = Math.max(current.getR(), end.getR()) - Math.min(current.getR(), end.getR());
-        int differenceG = Math.max(current.getG(), end.getG()) - Math.min(current.getG(), end.getG());
-        int differenceB = Math.max(current.getB(), end.getB()) - Math.min(current.getB(), end.getB());
+        float differenceR = Math.max(current.getR(), end.getR()) - Math.min(current.getR(), end.getR());
+        float differenceG = Math.max(current.getG(), end.getG()) - Math.min(current.getG(), end.getG());
+        float differenceB = Math.max(current.getB(), end.getB()) - Math.min(current.getB(), end.getB());
 
-        double changePerMillisecondR = 0, changePerMillisecondG = 0, changePerMillisecondB = 0;
+        float updateAmountR = 0, updateAmountG = 0, updateAmountB = 0;
 
-        if (differenceR != 0) {
-            changePerMillisecondR = totalTime / differenceR;
+        if (differenceR > 0) {
+            updateAmountR = differenceR / totalTime;
         }
 
-        if (differenceG != 0) {
-            changePerMillisecondG = totalTime / differenceG;
+        if (differenceG > 0) {
+            updateAmountG = differenceG / totalTime;
         }
 
-        if (differenceB != 0) {
-            changePerMillisecondB = totalTime / differenceB;
+        if (differenceB > 0) {
+            updateAmountB = differenceB / totalTime;
         }
 
-        double r = current.getR();
-        double g = current.getG();
-        double b = current.getB();
+        float r = 0, g = 0, b = 0;
 
         for (int i = 0; i <= totalTime; i++) {
-            r += changePerMillisecondR;
-            g += changePerMillisecondG;
-            b += changePerMillisecondB;
+            r += updateAmountR;
+            g += updateAmountG;
+            b += updateAmountB;
 
-            LEDColour ledColour = new LEDColour((int) r, (int) g, (int) b);
+            LEDColour ledColour = new LEDColour(Math.round(r), Math.round(g), Math.round(b));
             LEDHub.getInstance().getSerialHandler().sendData(ledColour.toString());
 
             Thread.sleep(1);

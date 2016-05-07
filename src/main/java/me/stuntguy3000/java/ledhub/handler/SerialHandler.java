@@ -1,8 +1,6 @@
 package me.stuntguy3000.java.ledhub.handler;
 
 import jssc.SerialPort;
-import jssc.SerialPortEvent;
-import jssc.SerialPortEventListener;
 import jssc.SerialPortException;
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
@@ -16,7 +14,6 @@ public class SerialHandler {
 
     public void sendData(String data) {
         try {
-            System.out.println("Sending: " + data);
             serialPort.writeString(data);
         } catch (SerialPortException e) {
             e.printStackTrace();
@@ -28,7 +25,7 @@ public class SerialHandler {
         try {
             serialPort.openPort();
             serialPort.setParams(
-                    SerialPort.BAUDRATE_9600,
+                    SerialPort.BAUDRATE_256000,
                     SerialPort.DATABITS_8,
                     SerialPort.STOPBITS_1,
                     SerialPort.PARITY_NONE,

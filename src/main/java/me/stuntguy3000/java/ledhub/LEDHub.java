@@ -159,8 +159,6 @@ public class LEDHub {
         serialHandler.sendData("g0;");
         Thread.sleep(300);
 
-        System.out.println("Fade In");
-
-        TimerHandler.fadeColours(new LEDColour(0, 0, 0), new LEDColour(0, 255, 0), 5000);
+        TimerHandler.fadeColours(new LEDColour(0, 0, 0), new LEDColour(0, 255, 0), 1000);
     }
 }
