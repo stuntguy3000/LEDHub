@@ -32,8 +32,6 @@ public class TimerHandler {
 
         float r = current.getR(), g = current.getG(), b = current.getB();
 
-        System.out.println(b + " : " + differenceB + " : " + updateAmountB);
-
         for (int i = 0; i <= totalTime; i++) {
             r += updateAmountR;
             g += updateAmountG;
