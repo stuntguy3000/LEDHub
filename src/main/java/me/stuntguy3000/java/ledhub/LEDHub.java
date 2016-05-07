@@ -7,7 +7,6 @@ import me.stuntguy3000.java.ledhub.handler.ConfigHandler;
 import me.stuntguy3000.java.ledhub.handler.SerialHandler;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
 import me.stuntguy3000.java.ledhub.handler.TimerHandler;
-import me.stuntguy3000.java.ledhub.object.LEDColour;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 
@@ -159,12 +158,14 @@ public class LEDHub {
         serialHandler.sendData("g0;");
         Thread.sleep(300);
 
-        TimerHandler.fadeColours(new LEDColour(0, 0, 255), 1000);
+        /*TimerHandler.fadeColours(new LEDColour(0, 0, 255), 1000);
 
         while (true) {
             TimerHandler.fadeColours(new LEDColour(0, 0, 255), new LEDColour(0, 255, 0), 1000);
             TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(255, 0, 0), 1000);
             TimerHandler.fadeColours(new LEDColour(255, 0, 0), new LEDColour(0, 0, 255), 1000);
-        }
+        }*/
+
+        TimerHandler.fadeColours(getConfigHandler().getMainConfiguration().getDefaultColour(), 1000);
     }
 }
