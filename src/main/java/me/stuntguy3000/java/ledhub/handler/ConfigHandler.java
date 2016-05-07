@@ -8,9 +8,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.util.HashMap;
 
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.action.LEDFadeToAction;
+import me.stuntguy3000.java.ledhub.action.LEDStaticAction;
+import me.stuntguy3000.java.ledhub.object.LEDColour;
+import me.stuntguy3000.java.ledhub.object.LEDService;
+import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
 // @author Luke Anderson | stuntguy3000
@@ -57,6 +63,17 @@ public class ConfigHandler {
         if (mainConfiguration == null) {
             mainConfiguration = new MainConfiguration();
             mainConfiguration.setSerialPort("com3");
+
+            HashMap<String, LEDServiceAction> actions = new HashMap<>();
+            actions.put("enable",
+                    new LEDFadeToAction(
+                            new LEDColour(0, 0 ,0),
+                            2000, new LEDColour(255, 255, 255)));
+            actions.put("changegreen",
+                    new LEDStaticAction(new LEDColour(0, 255 ,0), 5000));
+
+            LEDService ledService = new LEDService("testService", actions);
+            mainConfiguration.getLedServices().put(ledService.getServiceName().toLowerCase(), ledService);
         }
 
         String json = gson.toJson(mainConfiguration);

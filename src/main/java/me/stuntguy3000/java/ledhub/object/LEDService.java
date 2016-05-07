@@ -12,5 +12,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class LEDService {
     private String serviceName;
-    private HashMap<String, LEDServiceTrigger> serviceTriggers;
+    private HashMap<String, LEDServiceAction> serviceActions;
 }
