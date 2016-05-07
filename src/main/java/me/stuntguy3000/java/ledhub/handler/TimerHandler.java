@@ -15,7 +15,7 @@ public class TimerHandler {
         float differenceR = end.getR() - current.getR();
         float differenceG = end.getG() - current.getG();
         float differenceB = end.getB() - current.getB();
-        
+
         float updateAmountR = 0, updateAmountG = 0, updateAmountB = 0;
 
         if (differenceR != 0) {

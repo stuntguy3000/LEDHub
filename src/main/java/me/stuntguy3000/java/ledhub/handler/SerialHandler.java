@@ -12,12 +12,17 @@ public class SerialHandler {
     @Getter
     private SerialPort serialPort;
 
+    private String lastSent = "";
+
     public void sendData(String data) {
-        try {
-            serialPort.writeString(data);
-            System.out.println(data);
-        } catch (SerialPortException e) {
-            e.printStackTrace();
+        if (lastSent.isEmpty() || !lastSent.equalsIgnoreCase(data)) {
+            try {
+                lastSent = data;
+                serialPort.writeString(data);
+                System.out.println(data);
+            } catch (SerialPortException e) {
+                e.printStackTrace();
+            }
         }
     }
 
