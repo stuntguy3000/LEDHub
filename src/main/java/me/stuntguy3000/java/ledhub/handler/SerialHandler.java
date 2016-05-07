@@ -15,6 +15,7 @@ public class SerialHandler {
     public void sendData(String data) {
         try {
             serialPort.writeString(data);
+            System.out.println(data);
         } catch (SerialPortException e) {
             e.printStackTrace();
         }
