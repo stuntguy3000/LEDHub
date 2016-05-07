@@ -37,26 +37,26 @@ public class ServiceHandler {
     }
 
     /**
-     * Add a new LEDTrigger to a LEDService
+     * Add a new LEDAction to a LEDService
      *
      * @param serviceName String the name of the service
-     * @param ledServiceActionWrapper LEDServiceActionWrapper the information about the Trigger
+     * @param ledServiceActionWrapper LEDServiceActionWrapper the information about the Action
      */
-    public void addTrigger(String serviceName, LEDServiceActionWrapper ledServiceActionWrapper) {
+    public void addAction(String serviceName, LEDServiceActionWrapper ledServiceActionWrapper) {
         LEDHub.getInstance().getConfigHandler().getMainConfiguration()
-                .addTrigger(getService(serviceName), ledServiceActionWrapper);
+                .addAction(getService(serviceName), ledServiceActionWrapper);
     }
 
     /**
-     * Creates a TriggerWrapper
+     * Creates a ActionWrapper
      *
-     * @param triggerName String the name of the action
-     * @param ledServiceAction LEDServiceTrigger the intended action
+     * @param actionName String the name of the action
+     * @param ledServiceAction LEDServiceAction the intended action
      * @return LEDServiceActionWrapper the created action wrapper
      */
-    public LEDServiceActionWrapper createTriggerWrapper(String triggerName, LEDServiceAction ledServiceAction) {
+    public LEDServiceActionWrapper createActionWrapper(String actionName, LEDServiceAction ledServiceAction) {
         LEDServiceActionWrapper wrapper = new LEDServiceActionWrapper();
-        wrapper.setTriggerName(triggerName);
+        wrapper.setActionName(actionName);
         wrapper.setLedServiceActionType(ledServiceAction);
 
         return wrapper;

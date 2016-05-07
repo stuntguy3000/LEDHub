@@ -7,6 +7,6 @@ import lombok.Data;
  */
 @Data
 public class LEDServiceActionWrapper {
-    private String triggerName;
+    private String actionName;
     private LEDServiceAction ledServiceActionType;
 }

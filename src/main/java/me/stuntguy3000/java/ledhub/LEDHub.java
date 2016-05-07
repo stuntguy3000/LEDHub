@@ -3,8 +3,6 @@ package me.stuntguy3000.java.ledhub;
 import java.util.Arrays;
 
 import lombok.Getter;
-import me.stuntguy3000.java.ledhub.action.LEDFadeToAction;
-import me.stuntguy3000.java.ledhub.action.LEDStaticAction;
 import me.stuntguy3000.java.ledhub.handler.ConfigHandler;
 import me.stuntguy3000.java.ledhub.handler.SerialHandler;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
@@ -16,6 +14,11 @@ import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
  */
 public class LEDHub {
     /**
+     * Instance of LEDHub
+     */
+    @Getter
+    private static LEDHub instance;
+    /**
      * Handler Instances
      */
     @Getter
@@ -24,12 +27,6 @@ public class LEDHub {
     private SerialHandler serialHandler;
     @Getter
     private ServiceHandler serviceHandler;
-
-    /**
-     * Instance of LEDHub
-     */
-    @Getter
-    private static LEDHub instance;
 
     /**
      * Create a new instance of LEDHub
@@ -95,20 +92,11 @@ public class LEDHub {
                                 System.out.println(String.format(" LED Action count: %d", ledService.getServiceActions().size()));
                                 System.out.println();
 
-                                for (LEDServiceAction trigger : ledService.getServiceActions().values()) {
-                                    if (trigger instanceof LEDFadeToAction) {
-                                        LEDFadeToAction ledFadeToAction = (LEDFadeToAction) trigger;
-                                        System.out.println(" Type: LEDFadeToAction");
-                                        System.out.println(String.format("  Start Colour: %s", ledFadeToAction.getStartColour().toString()));
-                                        System.out.println(String.format("  End Colour: %s", ledFadeToAction.getEndColour().toString()));
-                                        System.out.println(String.format("  Fade Speed: %d", ledFadeToAction.getTriggerLife()));
-                                    } else if (trigger instanceof LEDStaticAction) {
-                                        LEDStaticAction ledStaticAction = (LEDStaticAction) trigger;
-                                        System.out.println(" Type: LEDStaticAction");
-                                        System.out.println(String.format("  End Colour: %s", ledStaticAction.getEndColour().toString()));
-                                    } else {
-                                        System.out.println("Unknown class type!");
-                                    }
+                                for (LEDServiceAction action : ledService.getServiceActions().values()) {
+                                    System.out.println(" Type: " + action.getType().name());
+                                    System.out.println(String.format("  Start Colour: %s", action.getStartColour().toString()));
+                                    System.out.println(String.format("  End Colour: %s", action.getEndColour().toString()));
+                                    System.out.println(String.format("  Fade Speed: %d", action.getActionLife()));
 
                                     System.out.println();
                                 }

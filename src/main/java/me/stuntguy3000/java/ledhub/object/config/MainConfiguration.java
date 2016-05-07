@@ -20,8 +20,8 @@ public class MainConfiguration {
         LEDHub.getInstance().getConfigHandler().saveConfig();
     }
 
-    public void addTrigger(LEDService service, LEDServiceActionWrapper ledServiceActionWrapper) {
-        service.getServiceActions().put(ledServiceActionWrapper.getTriggerName().toLowerCase(), ledServiceActionWrapper.getLedServiceActionType());
+    public void addAction(LEDService service, LEDServiceActionWrapper ledServiceActionWrapper) {
+        service.getServiceActions().put(ledServiceActionWrapper.getActionName().toLowerCase(), ledServiceActionWrapper.getLedServiceActionType());
         LEDHub.getInstance().getConfigHandler().saveConfig();
     }
 }
