@@ -1,4 +1,4 @@
-package me.stuntguy3000.java.ledhub.handler;
+package me.stuntguy3000.java.ledhub.impl.handlers;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -12,6 +12,12 @@ import java.util.HashMap;
 
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.interfaces.factories.ArrayCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.FactoryFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.GsonCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.GsonOptionCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.gsonoptions.GsonOption;
+import me.stuntguy3000.java.ledhub.interfaces.handlers.ConfigHandler;
 import me.stuntguy3000.java.ledhub.object.LEDColor;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
@@ -19,7 +25,7 @@ import me.stuntguy3000.java.ledhub.object.LEDServiceActionType;
 import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
 // @author Luke Anderson | stuntguy3000
-public class ConfigHandler {
+public class ConfigHandlerImpl implements ConfigHandler {
     private final LEDHub application;
 
     @Getter
@@ -27,16 +33,25 @@ public class ConfigHandler {
     @Getter
     private MainConfiguration mainConfiguration;
 
-    public ConfigHandler() {
+    public ConfigHandlerImpl() {
         this.application = LEDHub.getInstance();
 
-        GsonBuilder builder = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting();
-        gson = builder.create();
+        FactoryFactory factory = FactoryFactory.createFactory();
+        GsonCreationFactory gsonCreationFactory = factory.createGsonCreationFactory();
+        GsonOptionCreationFactory gsonOptionCreationFactory = factory.createGsonOptionCreationFactory();
+        ArrayCreationFactory arrayCreationFactory = factory.createArrayCreationFactory();
+
+        GsonOption disableHtmlEscapingOption = gsonOptionCreationFactory.createDisableHtmlEscapingOption();
+        GsonOption setPrettyPrintingOption = gsonOptionCreationFactory.createSetPrettyPrintingOption();
+
+        GsonOption[] gsonOptionArray = arrayCreationFactory.createArray(disableHtmlEscapingOption, setPrettyPrintingOption);
+
+        this.gson = gsonCreationFactory.createGson(gsonOptionArray);
 
         loadConfig();
     }
 
-    private void loadConfig() {
+    public void loadConfig() {
         File configFile = new File("config.json");
 
         BufferedReader br;

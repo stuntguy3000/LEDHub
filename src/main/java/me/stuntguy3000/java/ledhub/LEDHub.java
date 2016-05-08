@@ -3,7 +3,7 @@ package me.stuntguy3000.java.ledhub;
 import java.util.Arrays;
 
 import lombok.Getter;
-import me.stuntguy3000.java.ledhub.handler.ConfigHandler;
+import me.stuntguy3000.java.ledhub.impl.handlers.ConfigHandlerImpl;
 import me.stuntguy3000.java.ledhub.handler.SerialHandler;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
 import me.stuntguy3000.java.ledhub.handler.TimerHandler;
@@ -24,7 +24,7 @@ public class LEDHub {
      * Handler Instances
      */
     @Getter
-    private ConfigHandler configHandler;
+    private ConfigHandlerImpl configHandler;
     @Getter
     private SerialHandler serialHandler;
     @Getter
@@ -141,7 +141,7 @@ public class LEDHub {
      * Register any handlers, such as configuration
      */
     private void registerHandlers() throws InterruptedException {
-        configHandler = new ConfigHandler();
+        configHandler = new ConfigHandlerImpl();
         serialHandler = new SerialHandler();
         serviceHandler = new ServiceHandler();
         timerHandler = new TimerHandler();
