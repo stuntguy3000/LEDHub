@@ -38,7 +38,7 @@ public class LEDService {
             if (action != null) {
                 switch (action.getType()) {
                     case STATIC: {
-                        LEDHub.getInstance().getSerialHandler().sendData(action.getEndColour().toString());
+                        LEDHub.getInstance().getSerialHandler().sendData(action.getEndColor().toString());
                         int expireTime = action.getActionLife();
 
                         if (expireTime > 0) {
@@ -49,13 +49,13 @@ public class LEDService {
                             }
 
                             LEDHub.getInstance().getSerialHandler().sendData
-                                    (LEDHub.getInstance().getConfigHandler().getMainConfiguration().getDefaultColour().toString());
+                                    (LEDHub.getInstance().getConfigHandler().getMainConfiguration().getDefaultColor().toString());
                         }
                         continue;
                     }
                     case TRANSITION: {
                         try {
-                            TimerHandler.fadeColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                            TimerHandler.fadeColors(action.getStartColor(), action.getEndColor(), action.getActionLife());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

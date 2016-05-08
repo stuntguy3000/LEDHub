@@ -8,7 +8,7 @@ import lombok.Data;
  */
 @Data
 @AllArgsConstructor
-public class LEDColour {
+public class LEDColor {
     private int r;
     private int g;
     private int b;

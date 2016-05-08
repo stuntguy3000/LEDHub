@@ -12,7 +12,7 @@ import java.util.HashMap;
 
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
-import me.stuntguy3000.java.ledhub.object.LEDColour;
+import me.stuntguy3000.java.ledhub.object.LEDColor;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionType;
@@ -67,11 +67,11 @@ public class ConfigHandler {
             actions.put("enable",
                     new LEDServiceAction(
                             LEDServiceActionType.STATIC,
-                            new LEDColour(255, 255, 255), null, 2000));
+                            new LEDColor(255, 255, 255), null, 2000));
             actions.put("changegreen",
                     new LEDServiceAction(
                             LEDServiceActionType.TRANSITION,
-                            new LEDColour(255, 255, 255), new LEDColour(0, 255, 0), 2000));
+                            new LEDColor(255, 255, 255), new LEDColor(0, 255, 0), 2000));
 
             LEDService ledService = new LEDService("testService", actions);
             mainConfiguration.getLedServices().put(ledService.getServiceName().toLowerCase(), ledService);
