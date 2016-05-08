@@ -10,11 +10,15 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.function.Predicate;
 
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.interfaces.conditionals.Condition;
+import me.stuntguy3000.java.ledhub.interfaces.conditionals.ConditionalExecutor;
 import me.stuntguy3000.java.ledhub.interfaces.exceptionhandling.ExceptionHandler;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ArrayCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.ConditionalCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ExceptionHandlingFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.FactoryFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.FileCreationFactory;
@@ -64,18 +68,19 @@ public class ConfigHandlerImpl implements ConfigHandler {
         ExceptionHandlingFactory exceptionHandlingFactory = factoryFactory.createExceptionHandlingFactory();
 
         ExceptionHandler exceptionHandler = exceptionHandlingFactory.createExceptionHandler(() -> {
-            if (!configFile.exists()) {
-                saveConfig();
-                loadConfig();
-            } else {
+            ConditionalCreationFactory conditionalCreationFactory = factoryFactory.createConditionalCreationFactory();
+            Condition condition = conditionalCreationFactory.createCondition(configFile::exists);
+            ConditionalExecutor executor = conditionalCreationFactory.createConditionalExecutor(condition, () -> {
                 ReaderCreationFactory readerCreationFactory = factoryFactory.createReaderCreationFactory();
                 Reader fileReader = readerCreationFactory.createFileReader(configFile);
                 Reader bufferedReader = readerCreationFactory.createBufferedReader(fileReader);
                 mainConfiguration = gson.fromJson(bufferedReader, MainConfiguration.class);
-            }
-        }, t -> {
-            t.printStackTrace();
-        });
+            }, () -> {
+                saveConfig();
+                loadConfig();
+            });
+            executor.execute();
+        }, Throwable::printStackTrace);
 
         exceptionHandler.execute();
     }

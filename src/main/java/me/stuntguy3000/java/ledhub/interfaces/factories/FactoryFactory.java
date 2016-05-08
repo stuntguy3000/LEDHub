@@ -16,6 +16,8 @@ public interface FactoryFactory {
 
     ReaderCreationFactory createReaderCreationFactory();
 
+    ConditionalCreationFactory createConditionalCreationFactory();
+
     static FactoryFactory createFactory() {
         return new FactoryFactoryFactory();
     }

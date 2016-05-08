@@ -1,6 +1,7 @@
 package me.stuntguy3000.java.ledhub.impl.factories;
 
 import me.stuntguy3000.java.ledhub.interfaces.factories.ArrayCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.ConditionalCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ExceptionHandlingFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.FactoryFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.FileCreationFactory;
@@ -38,5 +39,10 @@ public class FactoryFactoryFactory implements FactoryFactory {
     @Override
     public ReaderCreationFactory createReaderCreationFactory() {
         return new ReaderCreationFactoryImpl();
+    }
+
+    @Override
+    public ConditionalCreationFactory createConditionalCreationFactory() {
+        return new ConditonalCreationFactoryImpl();
     }
 }
