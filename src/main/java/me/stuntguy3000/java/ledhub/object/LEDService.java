@@ -27,10 +27,7 @@ public class LEDService {
         }
 
         actionsToProcess.clear();
-
-        for (String ledServiceAction : serviceActions.keySet()) {
-            actionsToProcess.add(ledServiceAction);
-        }
+        actionsToProcess.addAll(serviceActions.keySet());
 
         for (String ledServiceName : actionsToProcess) {
             LEDServiceAction action = serviceActions.get(ledServiceName);

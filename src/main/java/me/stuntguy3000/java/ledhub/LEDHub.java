@@ -1,5 +1,7 @@
 package me.stuntguy3000.java.ledhub;
 
+import org.apache.catalina.startup.Tomcat;
+
 import java.util.Arrays;
 
 import lombok.Getter;
@@ -48,13 +50,15 @@ public class LEDHub {
     private void main() {
         instance = this;
 
-        // Register Handlers
+        // Register Handlers/Start Webserver
         try {
             registerHandlers();
-        } catch (InterruptedException e) {
+            startWebserver();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
+        // Command System
         while (true) {
             String fullCommand = System.console().readLine();
             String commandLabel = fullCommand.toLowerCase();
@@ -135,6 +139,15 @@ public class LEDHub {
                 }
             }
         }
+    }
+
+    private void startWebserver() throws Exception {
+        Tomcat tomcat = new Tomcat();
+        tomcat.setPort(Integer.valueOf("8080"));
+        tomcat.getHost().setAppBase(".");
+        tomcat.addWebapp("/", ".");
+        tomcat.start();
+        tomcat.getServer().await();
     }
 
     /**
