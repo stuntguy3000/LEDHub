@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.LinkedHashSet;
 
 import lombok.Data;
+import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.handler.TimerHandler;
 
 /**
  * @author stuntguy3000
@@ -20,6 +22,10 @@ public class LEDService {
     }
 
     public void activate() {
+        if (actionsToProcess == null) {
+            actionsToProcess = new LinkedHashSet<>();
+        }
+
         actionsToProcess.clear();
 
         for (String ledServiceAction : serviceActions.keySet()) {
@@ -32,7 +38,27 @@ public class LEDService {
             if (action != null) {
                 switch (action.getType()) {
                     case STATIC: {
+                        LEDHub.getInstance().getSerialHandler().sendData(action.getEndColour().toString());
+                        int expireTime = action.getActionLife();
 
+                        if (expireTime > 0) {
+                            try {
+                                Thread.sleep(expireTime);
+                            } catch (InterruptedException ignored) {
+
+                            }
+
+                            LEDHub.getInstance().getSerialHandler().sendData
+                                    (LEDHub.getInstance().getConfigHandler().getMainConfiguration().getDefaultColour().toString());
+                        }
+                        continue;
+                    }
+                    case TRANSITION: {
+                        try {
+                            TimerHandler.fadeColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
