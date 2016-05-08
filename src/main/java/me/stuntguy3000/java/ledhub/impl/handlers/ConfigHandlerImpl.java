@@ -1,22 +1,19 @@
 package me.stuntguy3000.java.ledhub.impl.handlers;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.Reader;
 import java.util.HashMap;
-import java.util.function.Predicate;
 
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.interfaces.conditionals.Condition;
 import me.stuntguy3000.java.ledhub.interfaces.conditionals.ConditionalExecutor;
-import me.stuntguy3000.java.ledhub.interfaces.exceptionhandling.ExceptionHandler;
+import me.stuntguy3000.java.ledhub.interfaces.exceptionhandling.CatchExecutor;
+import me.stuntguy3000.java.ledhub.interfaces.exceptionhandling.ExceptionExecutor;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ArrayCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ConditionalCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ExceptionHandlingFactory;
@@ -67,7 +64,12 @@ public class ConfigHandlerImpl implements ConfigHandler {
 
         ExceptionHandlingFactory exceptionHandlingFactory = factoryFactory.createExceptionHandlingFactory();
 
-        ExceptionHandler exceptionHandler = exceptionHandlingFactory.createExceptionHandler(() -> {
+        CatchExecutor catchExecutor = exceptionHandlingFactory.createCatchExecutor(FileNotFoundException.class, Throwable::printStackTrace);
+
+        ArrayCreationFactory arrayCreationFactory = factoryFactory.createArrayCreationFactory();
+        CatchExecutor[] catchExecutors = arrayCreationFactory.createArray(catchExecutor);
+
+        ExceptionExecutor exceptionExecutor = exceptionHandlingFactory.createExceptionExecutor(() -> {
             ConditionalCreationFactory conditionalCreationFactory = factoryFactory.createConditionalCreationFactory();
             Condition condition = conditionalCreationFactory.createCondition(configFile::exists);
             ConditionalExecutor executor = conditionalCreationFactory.createConditionalExecutor(condition, () -> {
@@ -80,9 +82,9 @@ public class ConfigHandlerImpl implements ConfigHandler {
                 loadConfig();
             });
             executor.execute();
-        }, Throwable::printStackTrace);
+        }, catchExecutors);
 
-        exceptionHandler.execute();
+        exceptionExecutor.execute();
     }
 
     public void saveConfig() {
