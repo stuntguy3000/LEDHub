@@ -10,6 +10,12 @@ public interface FactoryFactory {
 
     ArrayCreationFactory createArrayCreationFactory();
 
+    FileCreationFactory createFileCreationFactory();
+
+    ExceptionHandlingFactory createExceptionHandlingFactory();
+
+    ReaderCreationFactory createReaderCreationFactory();
+
     static FactoryFactory createFactory() {
         return new FactoryFactoryFactory();
     }

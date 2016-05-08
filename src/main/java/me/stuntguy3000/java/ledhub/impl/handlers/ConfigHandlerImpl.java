@@ -8,14 +8,19 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.Reader;
 import java.util.HashMap;
 
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.interfaces.exceptionhandling.ExceptionHandler;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ArrayCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.ExceptionHandlingFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.FactoryFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.FileCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.GsonCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.GsonOptionCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.ReaderCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.gsonoptions.GsonOption;
 import me.stuntguy3000.java.ledhub.interfaces.handlers.ConfigHandler;
 import me.stuntguy3000.java.ledhub.object.LEDColor;
@@ -52,23 +57,27 @@ public class ConfigHandlerImpl implements ConfigHandler {
     }
 
     public void loadConfig() {
-        File configFile = new File("config.json");
+        FactoryFactory factoryFactory = FactoryFactory.createFactory();
+        FileCreationFactory fileCreationFactory = factoryFactory.createFileCreationFactory();
+        File configFile = fileCreationFactory.createFile("config.json");
 
-        BufferedReader br;
-        try {
+        ExceptionHandlingFactory exceptionHandlingFactory = factoryFactory.createExceptionHandlingFactory();
+
+        ExceptionHandler exceptionHandler = exceptionHandlingFactory.createExceptionHandler(() -> {
             if (!configFile.exists()) {
                 saveConfig();
                 loadConfig();
-                return;
             } else {
-                br = new BufferedReader(new FileReader(configFile));
+                ReaderCreationFactory readerCreationFactory = factoryFactory.createReaderCreationFactory();
+                Reader fileReader = readerCreationFactory.createFileReader(configFile);
+                Reader bufferedReader = readerCreationFactory.createBufferedReader(fileReader);
+                mainConfiguration = gson.fromJson(bufferedReader, MainConfiguration.class);
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return;
-        }
+        }, t -> {
+            t.printStackTrace();
+        });
 
-        mainConfiguration = gson.fromJson(br, MainConfiguration.class);
+        exceptionHandler.execute();
     }
 
     public void saveConfig() {
