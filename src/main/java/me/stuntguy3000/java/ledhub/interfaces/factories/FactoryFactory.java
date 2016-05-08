@@ -18,6 +18,8 @@ public interface FactoryFactory {
 
     ConditionalCreationFactory createConditionalCreationFactory();
 
+    StreamCreationFactory createStreamCreationFactory();
+
     static FactoryFactory createFactory() {
         return new FactoryFactoryFactory();
     }

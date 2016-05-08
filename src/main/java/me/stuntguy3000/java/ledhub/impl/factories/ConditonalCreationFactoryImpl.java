@@ -20,4 +20,14 @@ public class ConditonalCreationFactoryImpl implements ConditionalCreationFactory
     public Condition createCondition(Supplier<Boolean> condition) {
         return new ConditionImpl(condition);
     }
+
+    @Override
+    public TrueConditionalExecutor createEmptyTrueConditionalExecutor() {
+        return () -> {};
+    }
+
+    @Override
+    public FalseConditionalExecutor createEmptyFalseConditionalExecutor() {
+        return () -> {};
+    }
 }

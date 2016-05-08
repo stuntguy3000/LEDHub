@@ -8,6 +8,7 @@ import me.stuntguy3000.java.ledhub.interfaces.factories.FileCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.GsonCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.GsonOptionCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ReaderCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.StreamCreationFactory;
 
 public class FactoryFactoryFactory implements FactoryFactory {
 
@@ -44,5 +45,10 @@ public class FactoryFactoryFactory implements FactoryFactory {
     @Override
     public ConditionalCreationFactory createConditionalCreationFactory() {
         return new ConditonalCreationFactoryImpl();
+    }
+
+    @Override
+    public StreamCreationFactory createStreamCreationFactory() {
+        return new StreamCreationFactoryImpl();
     }
 }

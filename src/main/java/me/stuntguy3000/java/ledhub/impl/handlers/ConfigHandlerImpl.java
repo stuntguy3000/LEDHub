@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.io.Reader;
 import java.util.HashMap;
 
@@ -22,6 +23,7 @@ import me.stuntguy3000.java.ledhub.interfaces.factories.FileCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.GsonCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.GsonOptionCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.factories.ReaderCreationFactory;
+import me.stuntguy3000.java.ledhub.interfaces.factories.StreamCreationFactory;
 import me.stuntguy3000.java.ledhub.interfaces.gsonoptions.GsonOption;
 import me.stuntguy3000.java.ledhub.interfaces.handlers.ConfigHandler;
 import me.stuntguy3000.java.ledhub.object.LEDColor;
@@ -83,14 +85,17 @@ public class ConfigHandlerImpl implements ConfigHandler {
             });
             executor.execute();
         }, catchExecutors);
-
         exceptionExecutor.execute();
     }
 
     public void saveConfig() {
-        File configFile = new File("config.json");
+        FactoryFactory factoryFactory = FactoryFactory.createFactory();
+        FileCreationFactory fileCreationFactory = factoryFactory.createFileCreationFactory();
+        File configFile = fileCreationFactory.createFile("config.json");
 
-        if (mainConfiguration == null) {
+        ConditionalCreationFactory conditionalCreationFactory = factoryFactory.createConditionalCreationFactory();
+        Condition condition = conditionalCreationFactory.createCondition(() -> mainConfiguration == null);
+        ConditionalExecutor conditionalExecutor = conditionalCreationFactory.createConditionalExecutor(condition, () ->{
             mainConfiguration = new MainConfiguration();
             mainConfiguration.setSerialPort("com3");
 
@@ -106,24 +111,32 @@ public class ConfigHandlerImpl implements ConfigHandler {
 
             LEDService ledService = new LEDService("testService", actions);
             mainConfiguration.getLedServices().put(ledService.getServiceName().toLowerCase(), ledService);
-        }
+        }, conditionalCreationFactory.createEmptyFalseConditionalExecutor());
+        conditionalExecutor.execute();
 
         String json = gson.toJson(mainConfiguration);
 
-        FileOutputStream outputStream;
+        ExceptionHandlingFactory exceptionHandlingFactory = factoryFactory.createExceptionHandlingFactory();
+        CatchExecutor catchExecutor = exceptionHandlingFactory.createCatchExecutor(Exception.class, t -> {
+            t.printStackTrace();
+            System.out.println("Error saving config.json!");
+        });
+        ArrayCreationFactory arrayCreationFactory = factoryFactory.createArrayCreationFactory();
+        CatchExecutor[] catchExecutors = arrayCreationFactory.createArray(catchExecutor);
 
-        try {
-            if (!configFile.exists()) {
+        ExceptionExecutor exceptionExecutor = exceptionHandlingFactory.createExceptionExecutor(() -> {
+            Condition condition1 = conditionalCreationFactory.createCondition(configFile::exists);
+            ConditionalExecutor conditionalExecutor1 = conditionalCreationFactory.createConditionalExecutor(condition1, conditionalCreationFactory.createEmptyTrueConditionalExecutor(), () -> {
                 configFile.createNewFile();
-            }
-            outputStream = new FileOutputStream(configFile);
+            });
+            conditionalExecutor1.execute();
+            StreamCreationFactory streamCreationFactory = factoryFactory.createStreamCreationFactory();
+            OutputStream outputStream = streamCreationFactory.createFileOutputStream(configFile);
             assert json != null;
             outputStream.write(json.getBytes());
             outputStream.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error saving config.json!");
-        }
+        }, catchExecutors);
+        exceptionExecutor.execute();
     }
 }
     

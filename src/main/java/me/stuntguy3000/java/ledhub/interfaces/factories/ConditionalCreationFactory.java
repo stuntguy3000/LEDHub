@@ -11,4 +11,8 @@ public interface ConditionalCreationFactory {
     ConditionalExecutor createConditionalExecutor(Condition condition, TrueConditionalExecutor trueConditionalExecutor, FalseConditionalExecutor falseConditionalExecutor);
 
     Condition createCondition(Supplier<Boolean> condition);
+
+    TrueConditionalExecutor createEmptyTrueConditionalExecutor();
+
+    FalseConditionalExecutor createEmptyFalseConditionalExecutor();
 }
