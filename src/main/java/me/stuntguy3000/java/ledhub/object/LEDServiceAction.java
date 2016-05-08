@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LEDServiceAction {
     private LEDServiceActionType type;
-    private LEDColour endColour;
-    private LEDColour startColour;
+    private LEDColor endColor;
+    private LEDColor startColor;
     private int actionLife;
 }

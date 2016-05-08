@@ -5,11 +5,11 @@ import org.apache.catalina.startup.Tomcat;
 import java.util.Arrays;
 
 import lombok.Getter;
-import me.stuntguy3000.java.ledhub.handler.ConfigHandler;
+import me.stuntguy3000.java.ledhub.impl.handlers.ConfigHandlerImpl;
 import me.stuntguy3000.java.ledhub.handler.SerialHandler;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
 import me.stuntguy3000.java.ledhub.handler.TimerHandler;
-import me.stuntguy3000.java.ledhub.object.LEDColour;
+import me.stuntguy3000.java.ledhub.object.LEDColor;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 
@@ -26,7 +26,7 @@ public class LEDHub {
      * Handler Instances
      */
     @Getter
-    private ConfigHandler configHandler;
+    private ConfigHandlerImpl configHandler;
     @Getter
     private SerialHandler serialHandler;
     @Getter
@@ -113,12 +113,12 @@ public class LEDHub {
 
                                 for (LEDServiceAction action : ledService.getServiceActions().values()) {
                                     System.out.println(" Type: " + action.getType().name());
-                                    if (action.getStartColour() != null) {
-                                        System.out.println(String.format("  Start Colour: %s", action.getStartColour().toString()));
+                                    if (action.getStartColor() != null) {
+                                        System.out.println(String.format("  Start Color: %s", action.getStartColor().toString()));
                                     }
 
-                                    if (action.getEndColour() != null) {
-                                        System.out.println(String.format("  End Colour: %s", action.getEndColour().toString()));
+                                    if (action.getEndColor() != null) {
+                                        System.out.println(String.format("  End Color: %s", action.getEndColor().toString()));
                                     }
 
                                     System.out.println(String.format("  Timer: %d", action.getActionLife()));
@@ -154,7 +154,7 @@ public class LEDHub {
      * Register any handlers, such as configuration
      */
     private void registerHandlers() throws InterruptedException {
-        configHandler = new ConfigHandler();
+        configHandler = new ConfigHandlerImpl();
         serialHandler = new SerialHandler();
         serviceHandler = new ServiceHandler();
         timerHandler = new TimerHandler();
@@ -163,12 +163,12 @@ public class LEDHub {
          * Connect to the Serial port
          */
         serialHandler.connectPort();
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 0, 0), 1000);
+        TimerHandler.fadeColors(new LEDColor(0, 255, 0), 250);
+        TimerHandler.fadeColors(new LEDColor(0, 255, 0), new LEDColor(0, 0, 0), 250);
+        TimerHandler.fadeColors(new LEDColor(0, 255, 0), 250);
+        TimerHandler.fadeColors(new LEDColor(0, 255, 0), new LEDColor(0, 0, 0), 250);
+        TimerHandler.fadeColors(new LEDColor(0, 0, 0), 1000);
 
-        TimerHandler.fadeColours(getConfigHandler().getMainConfiguration().getDefaultColour(), 1000);
+        TimerHandler.fadeColors(getConfigHandler().getMainConfiguration().getDefaultColor(), 1000);
     }
 }
