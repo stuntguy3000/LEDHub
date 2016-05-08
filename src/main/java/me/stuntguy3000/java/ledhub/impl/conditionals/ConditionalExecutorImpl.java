@@ -1,5 +1,6 @@
 package me.stuntguy3000.java.ledhub.impl.conditionals;
 
+import lombok.SneakyThrows;
 import me.stuntguy3000.java.ledhub.interfaces.conditionals.Condition;
 import me.stuntguy3000.java.ledhub.interfaces.conditionals.ConditionalExecutor;
 import me.stuntguy3000.java.ledhub.interfaces.conditionals.FalseConditionalExecutor;
@@ -17,6 +18,7 @@ public class ConditionalExecutorImpl implements ConditionalExecutor {
     }
 
     @Override
+    @SneakyThrows
     public void execute() {
         if (condition.compute()) {
             ifTrue.execute();
