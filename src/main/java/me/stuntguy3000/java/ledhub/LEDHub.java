@@ -5,10 +5,12 @@ import org.apache.catalina.startup.Tomcat;
 import java.util.Arrays;
 
 import lombok.Getter;
+import me.stuntguy3000.java.ledhub.handler.AppHandler;
 import me.stuntguy3000.java.ledhub.handler.ConfigHandler;
 import me.stuntguy3000.java.ledhub.handler.SerialHandler;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
 import me.stuntguy3000.java.ledhub.handler.TimerHandler;
+import me.stuntguy3000.java.ledhub.hook.CSGOHook;
 import me.stuntguy3000.java.ledhub.object.LEDColour;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
@@ -33,6 +35,8 @@ public class LEDHub {
     private ServiceHandler serviceHandler;
     @Getter
     private TimerHandler timerHandler;
+    @Getter
+    private AppHandler appHandler;
 
     /**
      * Create a new instance of LEDHub
@@ -143,7 +147,7 @@ public class LEDHub {
 
     private void startWebserver() throws Exception {
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(Integer.valueOf("8080"));
+        tomcat.setPort(8123);
         tomcat.getHost().setAppBase(".");
         tomcat.addWebapp("/", ".");
         tomcat.start();
@@ -158,10 +162,12 @@ public class LEDHub {
         serialHandler = new SerialHandler();
         serviceHandler = new ServiceHandler();
         timerHandler = new TimerHandler();
+        appHandler = new AppHandler();
 
         /**
          * Connect to the Serial port
          */
+        appHandler.showUI();
         serialHandler.connectPort();
         TimerHandler.fadeColours(new LEDColour(0, 255, 0), 250);
         TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
@@ -170,5 +176,7 @@ public class LEDHub {
         TimerHandler.fadeColours(new LEDColour(0, 0, 0), 1000);
 
         TimerHandler.fadeColours(getConfigHandler().getMainConfiguration().getDefaultColour(), 1000);
+
+        new CSGOHook().init();
     }
 }

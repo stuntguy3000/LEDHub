@@ -89,6 +89,7 @@
                 <filtering>true</filtering>
                 <directory>src/main/resources/</directory>
                 <includes>
+                    <include>*.png</include>
                     <include>*.html</include>
                 </includes>
             </resource>
@@ -98,7 +99,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>2.2</version>
+                <version>2.4.3</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -112,11 +113,6 @@
                                     <mainClass>${project.groupId}.${project.artifactId}</mainClass>
                                 </transformer>
                             </transformers>
-                            <artifactSet>
-                                <excludes>
-                                    <exclude></exclude>
-                                </excludes>
-                            </artifactSet>
                         </configuration>
                     </execution>
                 </executions>

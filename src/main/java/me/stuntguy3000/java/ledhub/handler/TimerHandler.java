@@ -32,7 +32,7 @@ public class TimerHandler {
 
         float r = current.getR(), g = current.getG(), b = current.getB();
 
-        for (int i = 0; i <= totalTime; i++) {
+        for (int i = 0; i < totalTime; i++) {
             r += updateAmountR;
             g += updateAmountG;
             b += updateAmountB;
@@ -42,5 +42,15 @@ public class TimerHandler {
 
             Thread.sleep(1);
         }
+    }
+
+    public static void flashColour(LEDColour ledColour, LEDColour defaultColour, int i) {
+        LEDHub.getInstance().getSerialHandler().sendData(ledColour.toString());
+        try {
+            Thread.sleep(i);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        LEDHub.getInstance().getSerialHandler().sendData(defaultColour.toString());
     }
 }
