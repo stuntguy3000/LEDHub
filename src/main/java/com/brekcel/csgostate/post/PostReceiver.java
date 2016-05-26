@@ -14,9 +14,6 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -24,19 +21,12 @@ public class PostReceiver implements HttpHandler {
     private PostHandler handle;
     private Server serv;
     private Gson gson;
-    private BufferedWriter writer;
     private JsonResponse currentJSR;
 
     public PostReceiver(Server serv, PostHandler handle) {
         this.serv = serv;
         this.handle = handle;
         gson = new Gson();
-        try {
-            new File("A:/csgoLog.txt").createNewFile();
-            writer = new BufferedWriter(new FileWriter(new File("A:/csgoLog.txt"), true));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
@@ -51,9 +41,6 @@ public class PostReceiver implements HttpHandler {
                 printResponse.append(inl + "\n");
             }
             in.close();
-            writer.write(response.toString());
-            writer.newLine();
-            writer.flush();
             JsonResponse jsr = gson.fromJson(response.toString(), JsonResponse.class);
             if ((jsr.getAuth() == null && serv.getAuthToken() != null) && (serv.getAuthToken() == null && jsr.getAuth() != null) && !jsr.getAuth().getToken().equals(serv.getAuthToken())) {
                 System.out.println("Invalid connection attempt from: " + exc.getLocalAddress());

@@ -9,6 +9,7 @@ import me.stuntguy3000.java.ledhub.handler.AppHandler;
 import me.stuntguy3000.java.ledhub.handler.ConfigHandler;
 import me.stuntguy3000.java.ledhub.handler.SerialHandler;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
+import me.stuntguy3000.java.ledhub.handler.ThreadHandler;
 import me.stuntguy3000.java.ledhub.handler.TimerHandler;
 import me.stuntguy3000.java.ledhub.hook.CSGOHook;
 import me.stuntguy3000.java.ledhub.object.LEDColour;
@@ -37,6 +38,8 @@ public class LEDHub {
     private TimerHandler timerHandler;
     @Getter
     private AppHandler appHandler;
+    @Getter
+    private ThreadHandler threadHandler;
 
     /**
      * Create a new instance of LEDHub
@@ -103,7 +106,7 @@ public class LEDHub {
                             LEDService service = getServiceHandler().getService(args[0]);
 
                             if (service != null) {
-                                service.activate();
+                                getServiceHandler().addToServiceQueue(service);
                                 continue;
                             }
                         } else if (args.length == 2 && args[0].equalsIgnoreCase("info")) {
@@ -163,19 +166,20 @@ public class LEDHub {
         serviceHandler = new ServiceHandler();
         timerHandler = new TimerHandler();
         appHandler = new AppHandler();
+        threadHandler = new ThreadHandler();
 
         /**
          * Connect to the Serial port
          */
         appHandler.showUI();
         serialHandler.connectPort();
+
+        // The only time when going out of the Queue system is acceptable
         TimerHandler.fadeColours(new LEDColour(0, 255, 0), 250);
         TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
         TimerHandler.fadeColours(new LEDColour(0, 255, 0), 250);
         TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
         TimerHandler.fadeColours(new LEDColour(0, 0, 0), 1000);
-
-        TimerHandler.fadeColours(getConfigHandler().getMainConfiguration().getDefaultColour(), 1000);
 
         new CSGOHook().init();
     }

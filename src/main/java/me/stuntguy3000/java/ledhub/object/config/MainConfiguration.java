@@ -1,11 +1,12 @@
 package me.stuntguy3000.java.ledhub.object.config;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import lombok.Data;
 import me.stuntguy3000.java.ledhub.LEDHub;
-import me.stuntguy3000.java.ledhub.object.LEDColour;
 import me.stuntguy3000.java.ledhub.object.LEDService;
+import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionWrapper;
 
 /**
@@ -13,9 +14,9 @@ import me.stuntguy3000.java.ledhub.object.LEDServiceActionWrapper;
  */
 @Data
 public class MainConfiguration {
-    private String serialPort = "COM3";
+    private String serialPort = "COM4";
     private HashMap<String, LEDService> ledServices = new HashMap<>();
-    private LEDColour defaultColour = new LEDColour(0, 255, 255);
+    private LinkedList<LEDServiceAction> backgroundServiceActions = new LinkedList<>();
 
     public void addService(LEDService ledService) {
         ledServices.put(ledService.getServiceName().toLowerCase(), ledService);

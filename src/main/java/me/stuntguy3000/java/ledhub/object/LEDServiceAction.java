@@ -14,5 +14,6 @@ public class LEDServiceAction {
     private LEDServiceActionType type;
     private LEDColour endColour;
     private LEDColour startColour;
+    private LEDServiceQueueCondition ledServiceQueueCondition;
     private int actionLife;
 }

@@ -1,16 +1,53 @@
 package me.stuntguy3000.java.ledhub.handler;
 
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
+import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionWrapper;
+import me.stuntguy3000.java.ledhub.object.LEDServiceQueueCondition;
 
 /**
  * @author stuntguy3000
  */
 public class ServiceHandler {
+    @Getter
+    private Queue<LEDServiceAction> serviceQueue = new LinkedList<>();
+    @Getter
+    private boolean isBackgroundRunning = false;
+
+    public void addToServiceQueue(LEDService ledService) {
+        ledService.getServiceActions().values().forEach(this::addToServiceQueue);
+    }
+
+    public void addToServiceQueue(LEDServiceAction ledServiceAction) {
+        if (ledServiceAction != null) {
+            if (isBackgroundRunning || ledServiceAction.getLedServiceQueueCondition() == LEDServiceQueueCondition.ALWAYS) {
+                serviceQueue.add(ledServiceAction);
+
+                if (serviceQueue.size() == 1) {
+                    processQueue();
+                }
+            }
+        }
+    }
+
+    public void processQueue() {
+        if (serviceQueue.size() > 0) {
+            if (isBackgroundRunning) {
+                isBackgroundRunning = false;
+
+                LEDHub.getInstance().getThreadHandler().getNewTask(serviceQueue.remove()).run();
+            }
+        } else {
+            LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions());
+        }
+    }
+
     /**
      * Returns an LEDService by name
      * <p>Returns null if non existent</p>

@@ -25,7 +25,7 @@ public class ServiceServlet extends HttpServlet {
 
             if (ledService != null) {
                 resp.getWriter().append("Activated");
-                ledService.activate();
+                LEDHub.getInstance().getServiceHandler().addToServiceQueue(ledService);
                 return;
             }
         }

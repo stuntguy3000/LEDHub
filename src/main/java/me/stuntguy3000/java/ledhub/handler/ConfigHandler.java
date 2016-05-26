@@ -16,6 +16,7 @@ import me.stuntguy3000.java.ledhub.object.LEDColour;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionType;
+import me.stuntguy3000.java.ledhub.object.LEDServiceQueueCondition;
 import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
 // @author Luke Anderson | stuntguy3000
@@ -61,19 +62,44 @@ public class ConfigHandler {
 
         if (mainConfiguration == null) {
             mainConfiguration = new MainConfiguration();
-            mainConfiguration.setSerialPort("com3");
+            mainConfiguration.setSerialPort("com4");
 
             HashMap<String, LEDServiceAction> actions = new HashMap<>();
             actions.put("enable",
                     new LEDServiceAction(
                             LEDServiceActionType.STATIC,
-                            new LEDColour(255, 255, 255), null, 2000));
+                            new LEDColour(255, 255, 255), null,
+                            LEDServiceQueueCondition.ALWAYS, 2000));
             actions.put("changegreen",
                     new LEDServiceAction(
                             LEDServiceActionType.TRANSITION,
-                            new LEDColour(255, 255, 255), new LEDColour(0, 255, 0), 2000));
+                            new LEDColour(255, 255, 255), null,
+                            LEDServiceQueueCondition.ALWAYS, 2000));
 
-            LEDService ledService = new LEDService("testService", actions);
+            LEDService ledService = new LEDService("sampleService", actions);
+
+            LEDServiceAction fadeBlueToRed = new LEDServiceAction(
+                    LEDServiceActionType.TRANSITION,
+                    new LEDColour(255, 0, 0),
+                    new LEDColour(0, 0, 255),
+                    LEDServiceQueueCondition.ALWAYS, 1000);
+
+            LEDServiceAction fadeRedToGreen = new LEDServiceAction(
+                    LEDServiceActionType.TRANSITION,
+                    new LEDColour(0, 255, 0),
+                    new LEDColour(255, 0, 0),
+                    LEDServiceQueueCondition.ALWAYS, 1000);
+
+            LEDServiceAction fadeGreenToBlue = new LEDServiceAction(
+                    LEDServiceActionType.TRANSITION,
+                    new LEDColour(0, 0, 255),
+                    new LEDColour(0, 255, 0),
+                    LEDServiceQueueCondition.ALWAYS, 1000);
+
+            mainConfiguration.getBackgroundServiceActions().add(fadeBlueToRed);
+            mainConfiguration.getBackgroundServiceActions().add(fadeRedToGreen);
+            mainConfiguration.getBackgroundServiceActions().add(fadeGreenToBlue);
+
             mainConfiguration.getLedServices().put(ledService.getServiceName().toLowerCase(), ledService);
         }
 
