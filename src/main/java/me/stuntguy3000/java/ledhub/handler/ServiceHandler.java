@@ -9,7 +9,6 @@ import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionWrapper;
-import me.stuntguy3000.java.ledhub.object.LEDServiceQueueCondition;
 
 /**
  * @author stuntguy3000
@@ -26,11 +25,24 @@ public class ServiceHandler {
 
     public void addToServiceQueue(LEDServiceAction ledServiceAction) {
         if (ledServiceAction != null) {
-            if (isBackgroundRunning || ledServiceAction.getLedServiceQueueCondition() == LEDServiceQueueCondition.ALWAYS) {
-                serviceQueue.add(ledServiceAction);
+            switch (ledServiceAction.getLedServiceQueueCondition()) {
+                case ALWAYS_QUEUE: {
+                    serviceQueue.add(ledServiceAction);
 
-                if (serviceQueue.size() == 1) {
-                    processQueue();
+                    if (serviceQueue.size() == 1 && isBackgroundRunning) {
+                        processQueue();
+                    }
+                    break;
+                }
+                case JUMP_QUEUE: {
+                    isBackgroundRunning = false;
+                    LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).run();
+                    break;
+                }
+                case RUN_IF_FREE: {
+                    if (isBackgroundRunning) {
+                        LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).run();
+                    }
                 }
             }
         }
@@ -44,6 +56,7 @@ public class ServiceHandler {
                 LEDHub.getInstance().getThreadHandler().getNewTask(serviceQueue.remove()).run();
             }
         } else {
+            isBackgroundRunning = true;
             LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions());
         }
     }

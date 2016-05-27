@@ -9,10 +9,6 @@ import com.brekcel.csgostate.JSON.State;
 import com.brekcel.csgostate.JSON.Weapon;
 import com.brekcel.csgostate.post.PostHandler;
 
-import me.stuntguy3000.java.ledhub.LEDHub;
-import me.stuntguy3000.java.ledhub.handler.TimerHandler;
-import me.stuntguy3000.java.ledhub.object.LEDColour;
-
 /**
  * @author stuntguy3000
  */
@@ -159,7 +155,7 @@ public class CSGOEvents implements PostHandler {
 
     @Override
     public void playerHealthChange(int health) {
-        try {
+        /*try {
             if (health == 100) {
                 TimerHandler.flashColour(new LEDColour(0, 255, 0),
                         new LEDColour(0, 255, 0),
@@ -177,7 +173,7 @@ public class CSGOEvents implements PostHandler {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
     @Override
