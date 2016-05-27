@@ -36,12 +36,12 @@ public class ServiceHandler {
                 }
                 case JUMP_QUEUE: {
                     isBackgroundRunning = false;
-                    LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).run();
+                    LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).start();
                     break;
                 }
                 case RUN_IF_FREE: {
                     if (isBackgroundRunning) {
-                        LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).run();
+                        LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).start();
                     }
                 }
             }
@@ -53,11 +53,11 @@ public class ServiceHandler {
             if (isBackgroundRunning) {
                 isBackgroundRunning = false;
 
-                LEDHub.getInstance().getThreadHandler().getNewTask(serviceQueue.remove()).run();
+                LEDHub.getInstance().getThreadHandler().getNewTask(serviceQueue.remove()).start();
             }
         } else {
             isBackgroundRunning = true;
-            LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions());
+            LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions()).start();
         }
     }
 

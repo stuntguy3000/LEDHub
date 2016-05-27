@@ -181,6 +181,9 @@ public class LEDHub {
         TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
         TimerHandler.fadeColours(new LEDColour(0, 0, 0), 1000);
 
+        serviceHandler.processQueue();
+
+
         new CSGOHook().init();
     }
 }
