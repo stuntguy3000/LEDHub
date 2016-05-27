@@ -183,6 +183,8 @@ public class LEDHub {
 
         serviceHandler.processQueue();
 
+        System.out.println(serviceHandler.getAllServices().keySet().toString());
+
 
         new CSGOHook().init();
     }

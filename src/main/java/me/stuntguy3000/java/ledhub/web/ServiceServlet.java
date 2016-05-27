@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.object.LEDService;
+import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 
 /**
  * @author stuntguy3000
@@ -18,16 +19,15 @@ import me.stuntguy3000.java.ledhub.object.LEDService;
 public class ServiceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("serviceName");
+        String serviceName = req.getParameter("service");
+        String actionName = req.getParameter("action");
 
-        if (action != null) {
-            LEDService ledService = LEDHub.getInstance().getServiceHandler().getService(action);
+        if (serviceName != null) {
+            LEDService ledService = LEDHub.getInstance().getServiceHandler().getService(serviceName);
+            LEDServiceAction action = ledService.getServiceActions().get(actionName);
 
-            if (ledService != null) {
-                resp.getWriter().append("Activated");
-                LEDHub.getInstance().getServiceHandler().addToServiceQueue(ledService);
-                return;
-            }
+            LEDHub.getInstance().getServiceHandler().addToServiceQueue(action);
+            return;
         }
 
         resp.sendError(404);

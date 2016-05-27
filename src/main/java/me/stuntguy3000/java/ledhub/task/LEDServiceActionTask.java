@@ -32,7 +32,7 @@ public class LEDServiceActionTask extends Thread {
                             if (expireTime > 0) {
                                 Thread.sleep(expireTime);
                             }
-                            return;
+                            break;
                         }
                         case TRANSITION: {
                             TimerHandler.fadeColours(action.getStartColour(), action.getEndColour(), action.getActionLife());

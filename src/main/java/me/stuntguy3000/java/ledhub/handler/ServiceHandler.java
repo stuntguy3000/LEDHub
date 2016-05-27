@@ -52,10 +52,11 @@ public class ServiceHandler {
         if (serviceQueue.size() > 0) {
             if (isBackgroundRunning) {
                 isBackgroundRunning = false;
-
-                LEDHub.getInstance().getThreadHandler().getNewTask(serviceQueue.remove()).start();
             }
+
+            LEDHub.getInstance().getThreadHandler().getNewTask(serviceQueue.remove()).start();
         } else {
+            System.out.println("Starting Background...");
             isBackgroundRunning = true;
             LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions()).start();
         }
