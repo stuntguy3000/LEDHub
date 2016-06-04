@@ -7,11 +7,11 @@ import me.stuntguy3000.java.ledhub.object.LEDColour;
  * @author stuntguy3000
  */
 public class TimerHandler {
-    public static void fadeColours(LEDColour endColour, int totalTime) throws InterruptedException {
+    public static void fadeColours(LEDColour endColour, long totalTime) throws InterruptedException {
         fadeColours(new LEDColour(0, 0, 0), endColour, totalTime);
     }
 
-    public static void fadeColours(LEDColour current, LEDColour end, int totalTime) throws InterruptedException {
+    public static void fadeColours(LEDColour current, LEDColour end, long totalTime) throws InterruptedException {
         float differenceR = end.getR() - current.getR();
         float differenceG = end.getG() - current.getG();
         float differenceB = end.getB() - current.getB();

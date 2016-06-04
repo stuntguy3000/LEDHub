@@ -64,6 +64,12 @@
             <artifactId>jssc</artifactId>
             <version>2.8.0</version>
         </dependency>
+        <!-- http://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -89,8 +95,7 @@
                 <filtering>true</filtering>
                 <directory>src/main/resources/</directory>
                 <includes>
-                    <include>*.png</include>
-                    <include>*.html</include>
+                    <include>*</include>
                 </includes>
             </resource>
         </resources>

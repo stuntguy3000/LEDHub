@@ -27,7 +27,7 @@ public class LEDServiceActionTask extends Thread {
                     switch (action.getType()) {
                         case STATIC: {
                             LEDHub.getInstance().getSerialHandler().sendData(action.getEndColour().toString());
-                            int expireTime = action.getActionLife();
+                            long expireTime = action.getActionLife();
 
                             if (expireTime > 0) {
                                 Thread.sleep(expireTime);

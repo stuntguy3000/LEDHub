@@ -10,10 +10,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LEDServiceAction {
+public class LEDServiceAction implements Cloneable {
     private LEDServiceActionType type;
     private LEDColour endColour;
     private LEDColour startColour;
     private LEDServiceQueueCondition ledServiceQueueCondition;
-    private int actionLife;
+    private long actionLife;
+
+    @Override
+    public LEDServiceAction clone() {
+        return new LEDServiceAction(type, endColour, startColour, ledServiceQueueCondition, actionLife);
+    }
 }
