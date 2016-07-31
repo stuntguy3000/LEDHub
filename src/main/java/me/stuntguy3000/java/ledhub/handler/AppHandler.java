@@ -21,9 +21,9 @@ public class AppHandler {
         }
 
         PopupMenu trayPopupMenu = new PopupMenu();
-        MenuItem action = new MenuItem("Action");
+        MenuItem action = new MenuItem("Restart");
 
-        action.addActionListener(e -> JOptionPane.showMessageDialog(null, "Action Clicked"));
+        action.addActionListener(e -> JOptionPane.showMessageDialog(null, "Restarting.."));
         trayPopupMenu.add(action);
 
         MenuItem close = new MenuItem("Close");

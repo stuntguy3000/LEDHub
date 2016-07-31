@@ -25,6 +25,8 @@ public class LEDHub {
      */
     @Getter
     private static LEDHub instance;
+    @Getter
+    private AppHandler appHandler;
     /**
      * Handler Instances
      */
@@ -35,11 +37,9 @@ public class LEDHub {
     @Getter
     private ServiceHandler serviceHandler;
     @Getter
-    private TimerHandler timerHandler;
-    @Getter
-    private AppHandler appHandler;
-    @Getter
     private ThreadHandler threadHandler;
+    @Getter
+    private TimerHandler timerHandler;
 
     /**
      * Create a new instance of LEDHub
@@ -49,6 +49,9 @@ public class LEDHub {
      */
     public static void main(String[] args) {
         new LEDHub().main();
+    }
+
+    public void shutdown() {
     }
 
     /**
@@ -182,9 +185,6 @@ public class LEDHub {
         TimerHandler.fadeColours(new LEDColour(0, 0, 0), 1000);
 
         serviceHandler.processQueue();
-
-        System.out.println(serviceHandler.getAllServices().keySet().toString());
-
 
         new CSGOHook().init();
     }

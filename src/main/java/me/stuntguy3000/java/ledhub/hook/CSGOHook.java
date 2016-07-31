@@ -13,7 +13,6 @@ public class CSGOHook {
         try {
             System.out.println("Starting CSGO Hook");
             Server server = new Server(3000, new CSGOEvents(), false);
-
         } catch (IOException e) {
             e.printStackTrace();
         }

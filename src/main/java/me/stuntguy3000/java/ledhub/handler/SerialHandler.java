@@ -9,10 +9,9 @@ import me.stuntguy3000.java.ledhub.LEDHub;
  * @author stuntguy3000
  */
 public class SerialHandler {
+    private String lastSent = "";
     @Getter
     private SerialPort serialPort;
-
-    private String lastSent = "";
 
     public void sendData(String data) {
         if (lastSent.isEmpty() || !lastSent.equalsIgnoreCase(data)) {
@@ -40,5 +39,14 @@ public class SerialHandler {
         } catch (SerialPortException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean closePort() {
+        try {
+            return serialPort.closePort();
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
