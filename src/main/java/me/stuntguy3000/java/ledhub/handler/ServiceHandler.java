@@ -1,14 +1,14 @@
 package me.stuntguy3000.java.ledhub.handler;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Queue;
-
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionWrapper;
+
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * @author stuntguy3000
@@ -18,6 +18,8 @@ public class ServiceHandler {
     private Queue<LEDServiceAction> serviceQueue = new LinkedList<>();
     @Getter
     private boolean isBackgroundRunning = false;
+    @Getter
+    private LEDServiceAction serviceBackground = null;
 
     public void addToServiceQueue(LEDService ledService) {
         ledService.getServiceActions().values().forEach(this::addToServiceQueue);
@@ -56,9 +58,14 @@ public class ServiceHandler {
 
             LEDHub.getInstance().getThreadHandler().getNewTask(serviceQueue.remove()).start();
         } else {
-            System.out.println("Starting Background...");
             isBackgroundRunning = true;
-            LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions()).start();
+
+            if (serviceBackground == null) {
+                LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions()).start();
+            } else {
+                LEDHub.getInstance().getThreadHandler().getNewTask(
+                        serviceBackground).start();
+            }
         }
     }
 
@@ -119,5 +126,10 @@ public class ServiceHandler {
      */
     public HashMap<String, LEDService> getAllServices() {
         return LEDHub.getInstance().getConfigHandler().getMainConfiguration().getLedServices();
+    }
+
+    public void setServiceBackground(LEDServiceAction ledServiceAction) {
+        serviceBackground = ledServiceAction;
+        processQueue();
     }
 }

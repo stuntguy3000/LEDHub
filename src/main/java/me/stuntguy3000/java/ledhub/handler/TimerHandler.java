@@ -53,4 +53,14 @@ public class TimerHandler {
         }
         LEDHub.getInstance().getSerialHandler().sendData(defaultColour.toString());
     }
+
+    public static void cutColours(LEDColour startColour, LEDColour endColour, long actionLife) {
+        LEDHub.getInstance().getSerialHandler().sendData(startColour.toString());
+        try {
+            Thread.sleep(actionLife / 2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        LEDHub.getInstance().getSerialHandler().sendData(endColour.toString());
+    }
 }

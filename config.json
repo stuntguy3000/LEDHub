@@ -1,5 +1,5 @@
 {
-  "serialPort": "com4",
+  "serialPort": "com3",
   "ledServices": {
     "csgo": {
       "serviceName": "csgo",
@@ -13,6 +13,21 @@
           },
           "ledServiceQueueCondition": "RUN_IF_FREE",
           "actionLife": 250
+        },
+        "onDeath": {
+          "type": "TRANSITION",
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "startColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "JUMP_QUEUE",
+          "actionLife": 500
         },
         "onHitGreen": {
           "type": "STATIC",
@@ -108,6 +123,36 @@
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
           "actionLife": 1000
+        },
+        "ctTeamWin": {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 500
+        },
+        "tTeamWin": {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 165,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 500
         }
       }
     }

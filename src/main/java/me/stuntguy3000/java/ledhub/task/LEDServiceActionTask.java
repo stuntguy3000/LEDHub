@@ -1,13 +1,13 @@
 package me.stuntguy3000.java.ledhub.task;
 
-import java.util.LinkedList;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.handler.TimerHandler;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
+
+import java.util.LinkedList;
 
 /**
  * @author stuntguy3000
@@ -36,6 +36,10 @@ public class LEDServiceActionTask extends Thread {
                         }
                         case TRANSITION: {
                             TimerHandler.fadeColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                            break;
+                        }
+                        case CUT: {
+                            TimerHandler.cutColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
                         }
                     }
                 }
