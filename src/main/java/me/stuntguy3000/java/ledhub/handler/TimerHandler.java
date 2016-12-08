@@ -62,5 +62,10 @@ public class TimerHandler {
             e.printStackTrace();
         }
         LEDHub.getInstance().getSerialHandler().sendData(endColour.toString());
+        try {
+            Thread.sleep(actionLife / 2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

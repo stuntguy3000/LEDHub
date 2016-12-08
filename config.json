@@ -108,7 +108,7 @@
           "type": "STATIC",
           "endColour": {
             "r": 0,
-            "g": 0,
+            "g": 255,
             "b": 255
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
@@ -128,22 +128,22 @@
           "type": "CUT",
           "startColour": {
             "r": 0,
-            "g": 255,
+            "g": 0,
             "b": 0
           },
           "endColour": {
             "r": 0,
-            "g": 0,
+            "g": 255,
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 500
+          "actionLife": 200
         },
         "tTeamWin": {
           "type": "CUT",
           "startColour": {
             "r": 0,
-            "g": 255,
+            "g": 0,
             "b": 0
           },
           "endColour": {
@@ -152,7 +152,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 500
+          "actionLife": 200
         }
       }
     }
