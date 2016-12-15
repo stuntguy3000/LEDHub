@@ -5,10 +5,6 @@ import com.brekcel.csgostate.post.PostHandler;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
 import me.stuntguy3000.java.ledhub.object.*;
-import org.apache.commons.io.FileUtils;
-
-import java.io.*;
-import java.util.LinkedList;
 
 /**
  * @author stuntguy3000
@@ -16,38 +12,9 @@ import java.util.LinkedList;
 public class CSGOEvents implements PostHandler {
     private boolean bombFlashing = false;
     private boolean roundLive = false;
-    private LinkedList<Long> bombTriggers;
     private ServiceHandler serviceHandler = LEDHub.getInstance().getServiceHandler();
     private int tScore = 0, ctScore = 0;
     private String currentTeam = null;
-
-    public CSGOEvents() {
-        bombTriggers = new LinkedList<>();
-
-        try {
-            InputStream cpResource = this.getClass().getClassLoader().getResourceAsStream("csgoBombTimer");
-            File tmpFile = File.createTempFile("file", "temp");
-            FileUtils.copyInputStreamToFile(cpResource, tmpFile); // FileUtils from apache-io
-            try {
-                FileInputStream fis = new FileInputStream(tmpFile);
-                BufferedReader br = new BufferedReader(new InputStreamReader(fis));
-
-                String line;
-                while ((line = br.readLine()) != null) {
-                    Long number = Long.valueOf(line);
-                    bombTriggers.add(number);
-                }
-
-                System.out.println(bombTriggers.toString());
-
-                br.close();
-            } finally {
-                tmpFile.delete();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void receivedJsonResponse(JsonResponse jsonResponse) {

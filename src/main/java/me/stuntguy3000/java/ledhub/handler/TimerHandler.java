@@ -44,28 +44,17 @@ public class TimerHandler {
         }
     }
 
-    public static void flashColour(LEDColour ledColour, LEDColour defaultColour, int i) {
+    public static void flashColour(LEDColour ledColour, LEDColour defaultColour, int i) throws InterruptedException {
         LEDHub.getInstance().getSerialHandler().sendData(ledColour.toString());
-        try {
-            Thread.sleep(i);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(i);
         LEDHub.getInstance().getSerialHandler().sendData(defaultColour.toString());
     }
 
-    public static void cutColours(LEDColour startColour, LEDColour endColour, long actionLife) {
+    public static void cutColours(LEDColour startColour, LEDColour endColour, long actionLife) throws InterruptedException {
         LEDHub.getInstance().getSerialHandler().sendData(startColour.toString());
-        try {
-            Thread.sleep(actionLife / 2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(actionLife / 2);
+
         LEDHub.getInstance().getSerialHandler().sendData(endColour.toString());
-        try {
-            Thread.sleep(actionLife / 2);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(actionLife / 2);
     }
 }

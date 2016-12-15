@@ -45,8 +45,9 @@ public class AppHandler {
                 name = " > " + name;
             }
 
-            backgroundsMenu.add(new MenuItem(name));
-            backgroundsMenu.addActionListener(new BackgroundMenuItem(background, serviceHandler));
+            MenuItem item = new MenuItem(name);
+            item.addActionListener(new BackgroundMenuItem(background, serviceHandler));
+            backgroundsMenu.add(item);
         }
         trayPopupMenu.add(backgroundsMenu);
 
@@ -107,6 +108,7 @@ public class AppHandler {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            System.out.println("BACKGROUND: " + ledBackground.getBackgroundName());
             serviceHandler.setDefaultBackground(ledBackground);
             serviceHandler.processQueue();
         }
