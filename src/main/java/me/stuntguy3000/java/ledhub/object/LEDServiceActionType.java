@@ -7,4 +7,5 @@ public enum LEDServiceActionType {
     STATIC,
     TRANSITION,
     CUT,
+    BACKGROUND
 }

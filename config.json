@@ -1,6 +1,81 @@
 {
   "serialPort": "com3",
   "ledServices": {
+    "Colours": {
+      "serviceName": "Colours",
+      "serviceActions": {
+        "Blue": {
+          "type": "BACKGROUND",
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1
+        },
+        "Cyan": {
+          "type": "BACKGROUND",
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1
+        },
+        "Magenta": {
+          "type": "BACKGROUND",
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1
+        },
+        "Yellow": {
+          "type": "BACKGROUND",
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1
+        },
+        "Orange": {
+          "type": "BACKGROUND",
+          "endColour": {
+            "r": 255,
+            "g": 165,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1
+        },
+        "Red": {
+          "type": "BACKGROUND",
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1
+        },
+        "Green": {
+          "type": "BACKGROUND",
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1
+        }
+      }
+    },
     "csgo": {
       "serviceName": "csgo",
       "serviceActions": {

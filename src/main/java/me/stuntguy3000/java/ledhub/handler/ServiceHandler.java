@@ -4,6 +4,7 @@ import lombok.Getter;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
+import me.stuntguy3000.java.ledhub.object.LEDServiceActionType;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionWrapper;
 
 import java.util.HashMap;
@@ -27,23 +28,29 @@ public class ServiceHandler {
 
     public void addToServiceQueue(LEDServiceAction ledServiceAction) {
         if (ledServiceAction != null) {
-            switch (ledServiceAction.getLedServiceQueueCondition()) {
-                case ALWAYS_QUEUE: {
-                    serviceQueue.add(ledServiceAction);
+            if (ledServiceAction.getType() == LEDServiceActionType.BACKGROUND) {
+                serviceBackground = ledServiceAction;
+                System.out.println("Setting background");
+            } else {
+                switch (ledServiceAction.getLedServiceQueueCondition()) {
+                    case ALWAYS_QUEUE: {
+                        serviceQueue.add(ledServiceAction);
 
-                    if (serviceQueue.size() == 1 && isBackgroundRunning) {
-                        processQueue();
+                        if (serviceQueue.size() == 1 && isBackgroundRunning) {
+                            processQueue();
+                        }
+                        break;
                     }
-                    break;
-                }
-                case JUMP_QUEUE: {
-                    isBackgroundRunning = false;
-                    LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).start();
-                    break;
-                }
-                case RUN_IF_FREE: {
-                    if (isBackgroundRunning) {
+                    case JUMP_QUEUE: {
+                        isBackgroundRunning = false;
                         LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).start();
+                        break;
+                    }
+                    case RUN_IF_FREE: {
+                        if (isBackgroundRunning) {
+                            LEDHub.getInstance().getThreadHandler().getNewTask(ledServiceAction).start();
+                        }
+                        break;
                     }
                 }
             }
@@ -61,7 +68,9 @@ public class ServiceHandler {
             isBackgroundRunning = true;
 
             if (serviceBackground == null) {
-                LEDHub.getInstance().getThreadHandler().getNewTask(LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions()).start();
+                LEDHub.getInstance().getThreadHandler().getNewTask(
+                        LEDHub.getInstance().getConfigHandler().getMainConfiguration().getBackgroundServiceActions())
+                        .start();
             } else {
                 LEDHub.getInstance().getThreadHandler().getNewTask(
                         serviceBackground).start();
@@ -130,6 +139,11 @@ public class ServiceHandler {
 
     public void setServiceBackground(LEDServiceAction ledServiceAction) {
         serviceBackground = ledServiceAction;
-        processQueue();
+    }
+
+    public void reset() {
+        serviceBackground = null;
+        getServiceQueue().clear();
+        isBackgroundRunning = false;
     }
 }

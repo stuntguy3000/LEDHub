@@ -40,6 +40,11 @@ public class LEDServiceActionTask extends Thread {
                         }
                         case CUT: {
                             TimerHandler.cutColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                            break;
+                        }
+                        case BACKGROUND: {
+                            LEDHub.getInstance().getSerialHandler().sendData(action.getEndColour().toString());
+                            break;
                         }
                     }
                 }

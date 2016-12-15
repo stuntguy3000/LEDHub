@@ -237,9 +237,11 @@ public class CSGOEvents implements PostHandler {
     public void playerTeamChange(String team) {
         if (team.equalsIgnoreCase("ct")) {
             serviceHandler.setServiceBackground(serviceHandler.getService("csgo").getServiceActions().get("ctTeam"));
+            serviceHandler.processQueue();
             currentTeam = "ct";
         } else {
             serviceHandler.setServiceBackground(serviceHandler.getService("csgo").getServiceActions().get("tTeam"));
+            serviceHandler.processQueue();
             currentTeam = "t";
         }
     }

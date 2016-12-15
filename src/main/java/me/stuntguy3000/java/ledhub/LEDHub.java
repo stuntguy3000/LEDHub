@@ -1,20 +1,14 @@
 package me.stuntguy3000.java.ledhub;
 
-import org.apache.catalina.startup.Tomcat;
-
-import java.util.Arrays;
-
 import lombok.Getter;
-import me.stuntguy3000.java.ledhub.handler.AppHandler;
-import me.stuntguy3000.java.ledhub.handler.ConfigHandler;
-import me.stuntguy3000.java.ledhub.handler.SerialHandler;
-import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
-import me.stuntguy3000.java.ledhub.handler.ThreadHandler;
-import me.stuntguy3000.java.ledhub.handler.TimerHandler;
+import me.stuntguy3000.java.ledhub.handler.*;
 import me.stuntguy3000.java.ledhub.hook.CSGOHook;
 import me.stuntguy3000.java.ledhub.object.LEDColour;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
+import org.apache.catalina.startup.Tomcat;
+
+import java.util.Arrays;
 
 /**
  * @author stuntguy3000
@@ -49,9 +43,6 @@ public class LEDHub {
      */
     public static void main(String[] args) {
         new LEDHub().main();
-    }
-
-    public void shutdown() {
     }
 
     /**
@@ -187,5 +178,10 @@ public class LEDHub {
         serviceHandler.processQueue();
 
         new CSGOHook().init();
+    }
+
+    public void restart() {
+        serviceHandler.reset();
+        serviceHandler.processQueue();
     }
 }
