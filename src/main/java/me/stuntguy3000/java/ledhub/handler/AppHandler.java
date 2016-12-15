@@ -3,8 +3,10 @@ package me.stuntguy3000.java.ledhub.handler;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.object.LEDBackground;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
+import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -30,8 +32,27 @@ public class AppHandler {
         PopupMenu trayPopupMenu = new PopupMenu();
 
         ServiceHandler serviceHandler = LEDHub.getInstance().getServiceHandler();
+        MainConfiguration mainConfiguration = LEDHub.getInstance().getConfigHandler().getMainConfiguration();
 
-        for (LEDService service : serviceHandler.getAllServices().values()) {
+        // Backgrounds
+        Menu backgroundsMenu = new Menu("Backgrounds");
+        String currentBackground = serviceHandler.getDefaultBackground().getBackgroundName();
+
+        for (LEDBackground background : mainConfiguration.getBackgrounds()) {
+            String name = background.getBackgroundName();
+
+            if (name.equalsIgnoreCase(currentBackground)) {
+                name = " > " + name;
+            }
+
+            backgroundsMenu.add(new MenuItem(name));
+            backgroundsMenu.addActionListener(new BackgroundMenuItem(background, serviceHandler));
+        }
+        trayPopupMenu.add(backgroundsMenu);
+
+        // Services
+        Menu servicesMenu = new Menu("Services");
+        for (LEDService service : serviceHandler.getAllServices()) {
             Menu subMenu = new Menu(service.getServiceName());
 
             for (Map.Entry<String, LEDServiceAction> ledServiceAction : service.getServiceActions().entrySet()) {
@@ -40,10 +61,11 @@ public class AppHandler {
 
                 subMenu.add(actionButton);
             }
-            trayPopupMenu.add(subMenu);
+            servicesMenu.add(subMenu);
         }
+        trayPopupMenu.add(servicesMenu);
 
-
+        // Standard Options
         MenuItem action = new MenuItem("Restart");
 
         action.addActionListener(e -> LEDHub.getInstance().restart());
@@ -73,6 +95,19 @@ public class AppHandler {
         @Override
         public void actionPerformed(ActionEvent e) {
             serviceHandler.addToServiceQueue(ledServiceAction);
+            serviceHandler.processQueue();
+        }
+    }
+
+    @Data
+    @AllArgsConstructor
+    private class BackgroundMenuItem implements ActionListener {
+        private LEDBackground ledBackground;
+        private ServiceHandler serviceHandler;
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            serviceHandler.setDefaultBackground(ledBackground);
             serviceHandler.processQueue();
         }
     }

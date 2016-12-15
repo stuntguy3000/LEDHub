@@ -1,16 +1,15 @@
 package me.stuntguy3000.java.ledhub.web;
 
-import java.io.IOException;
+import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.object.LEDService;
+import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import me.stuntguy3000.java.ledhub.LEDHub;
-import me.stuntguy3000.java.ledhub.object.LEDService;
-import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
+import java.io.IOException;
 
 /**
  * @author stuntguy3000
@@ -27,6 +26,7 @@ public class ServiceServlet extends HttpServlet {
             LEDServiceAction action = ledService.getServiceActions().get(actionName);
 
             LEDHub.getInstance().getServiceHandler().addToServiceQueue(action);
+            resp.setStatus(200);
             return;
         }
 

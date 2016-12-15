@@ -6,6 +6,5 @@ package me.stuntguy3000.java.ledhub.object;
 public enum LEDServiceActionType {
     STATIC,
     TRANSITION,
-    CUT,
-    BACKGROUND
+    CUT
 }

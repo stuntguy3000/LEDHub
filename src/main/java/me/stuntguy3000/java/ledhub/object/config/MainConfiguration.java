@@ -1,25 +1,24 @@
 package me.stuntguy3000.java.ledhub.object.config;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-
 import lombok.Data;
 import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.object.LEDBackground;
 import me.stuntguy3000.java.ledhub.object.LEDService;
-import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.LEDServiceActionWrapper;
+
+import java.util.ArrayList;
 
 /**
  * @author stuntguy3000
  */
 @Data
 public class MainConfiguration {
-    private String serialPort = "COM4";
-    private HashMap<String, LEDService> ledServices = new HashMap<>();
-    private LinkedList<LEDServiceAction> backgroundServiceActions = new LinkedList<>();
+    private String serialPort = "COM3";
+    private ArrayList<LEDService> services = new ArrayList<>();
+    private ArrayList<LEDBackground> backgrounds = new ArrayList<>();
 
     public void addService(LEDService ledService) {
-        ledServices.put(ledService.getServiceName().toLowerCase(), ledService);
+        services.add(ledService);
         LEDHub.getInstance().getConfigHandler().saveConfig();
     }
 

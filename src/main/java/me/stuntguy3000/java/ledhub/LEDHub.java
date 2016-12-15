@@ -3,7 +3,6 @@ package me.stuntguy3000.java.ledhub;
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.handler.*;
 import me.stuntguy3000.java.ledhub.hook.CSGOHook;
-import me.stuntguy3000.java.ledhub.object.LEDColour;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import org.apache.catalina.startup.Tomcat;
@@ -90,7 +89,7 @@ public class LEDHub {
                     if (!(args == null)) {
                         if (args.length == 1) {
                             if (args[0].equalsIgnoreCase("list")) {
-                                for (LEDService ledService : getServiceHandler().getAllServices().values()) {
+                                for (LEDService ledService : getServiceHandler().getAllServices()) {
                                     System.out.println(String.format("Service %s has %d action(s).", ledService.getServiceName(), ledService.getServiceActions().size()));
                                 }
 
@@ -148,7 +147,6 @@ public class LEDHub {
         tomcat.getHost().setAppBase(".");
         tomcat.addWebapp("/", ".");
         tomcat.start();
-        tomcat.getServer().await();
     }
 
     /**
@@ -167,14 +165,6 @@ public class LEDHub {
          */
         appHandler.showUI();
         serialHandler.connectPort();
-
-        // The only time when going out of the Queue system is acceptable
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 255, 0), new LEDColour(0, 0, 0), 250);
-        TimerHandler.fadeColours(new LEDColour(0, 0, 0), 1000);
-
         serviceHandler.processQueue();
 
         new CSGOHook().init();

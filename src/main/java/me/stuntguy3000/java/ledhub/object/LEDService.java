@@ -1,8 +1,8 @@
 package me.stuntguy3000.java.ledhub.object;
 
-import java.util.HashMap;
-
 import lombok.Data;
+
+import java.util.HashMap;
 
 /**
  * @author stuntguy3000

@@ -1,10 +1,10 @@
 package me.stuntguy3000.java.ledhub.handler;
 
-import java.util.LinkedList;
-
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.task.LEDServiceActionTask;
+
+import java.util.LinkedList;
 
 /**
  * @author stuntguy3000
