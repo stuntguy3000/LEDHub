@@ -36,16 +36,9 @@ public class AppHandler {
 
         // Backgrounds
         Menu backgroundsMenu = new Menu("Backgrounds");
-        String currentBackground = serviceHandler.getDefaultBackground().getBackgroundName();
 
         for (LEDBackground background : mainConfiguration.getBackgrounds()) {
-            String name = background.getBackgroundName();
-
-            if (name.equalsIgnoreCase(currentBackground)) {
-                name = " > " + name;
-            }
-
-            MenuItem item = new MenuItem(name);
+            MenuItem item = new MenuItem(background.getBackgroundName());
             item.addActionListener(new BackgroundMenuItem(background, serviceHandler));
             backgroundsMenu.add(item);
         }
@@ -108,7 +101,6 @@ public class AppHandler {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("BACKGROUND: " + ledBackground.getBackgroundName());
             serviceHandler.setDefaultBackground(ledBackground);
             serviceHandler.processQueue();
         }

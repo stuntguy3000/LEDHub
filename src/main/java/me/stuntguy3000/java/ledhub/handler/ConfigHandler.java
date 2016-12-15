@@ -60,32 +60,29 @@ public class ConfigHandler {
             actions.put("enable",
                     new LEDServiceAction(
                             LEDServiceActionType.STATIC,
-                            new LEDColour(255, 255, 255), null,
+                            null, new LEDColour(255, 255, 255),
                             LEDServiceQueueCondition.ALWAYS_QUEUE, 2000));
             actions.put("changegreen",
                     new LEDServiceAction(
                             LEDServiceActionType.TRANSITION,
-                            new LEDColour(255, 255, 255), null,
+                            null, new LEDColour(255, 255, 255),
                             LEDServiceQueueCondition.ALWAYS_QUEUE, 2000));
 
             LEDService ledService = new LEDService("sampleService", actions);
 
             LEDServiceAction fadeBlueToRed = new LEDServiceAction(
                     LEDServiceActionType.TRANSITION,
-                    new LEDColour(255, 0, 0),
-                    new LEDColour(0, 0, 255),
+                    new LEDColour(0, 0, 255), new LEDColour(255, 0, 0),
                     LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
 
             LEDServiceAction fadeRedToGreen = new LEDServiceAction(
                     LEDServiceActionType.TRANSITION,
-                    new LEDColour(0, 255, 0),
-                    new LEDColour(255, 0, 0),
+                    new LEDColour(255, 0, 0), new LEDColour(0, 255, 0),
                     LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
 
             LEDServiceAction fadeGreenToBlue = new LEDServiceAction(
                     LEDServiceActionType.TRANSITION,
-                    new LEDColour(0, 0, 255),
-                    new LEDColour(0, 255, 0),
+                    new LEDColour(0, 255, 0), new LEDColour(0, 0, 255),
                     LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
 
             LinkedList<LEDServiceAction> ledServiceActions = new LinkedList<>();

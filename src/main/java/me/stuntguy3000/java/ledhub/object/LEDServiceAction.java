@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LEDServiceAction implements Cloneable {
     private LEDServiceActionType type;
-    private LEDColour endColour;
     private LEDColour startColour;
+    private LEDColour endColour;
     private LEDServiceQueueCondition ledServiceQueueCondition;
     private long actionLife;
 
     @Override
     public LEDServiceAction clone() {
-        return new LEDServiceAction(type, endColour, startColour, ledServiceQueueCondition, actionLife);
+        return new LEDServiceAction(type, startColour, endColour, ledServiceQueueCondition, actionLife);
     }
 }

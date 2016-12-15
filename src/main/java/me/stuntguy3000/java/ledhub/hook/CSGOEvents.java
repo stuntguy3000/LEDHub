@@ -252,7 +252,7 @@ public class CSGOEvents implements PostHandler {
     public void playerFlashedChange(int flashed) {
         if (!bombFlashing && roundLive) {
             LEDServiceAction flashAction = new LEDServiceAction(LEDServiceActionType.STATIC,
-                    new LEDColour(flashed, flashed, flashed), null, LEDServiceQueueCondition.JUMP_QUEUE, (flashed > 0 ? 7500 : 250)
+                    null, new LEDColour(flashed, flashed, flashed), LEDServiceQueueCondition.JUMP_QUEUE, (flashed > 0 ? 7500 : 250)
             );
 
             LEDHub.getInstance().getServiceHandler().addToServiceQueue(flashAction);
@@ -263,7 +263,7 @@ public class CSGOEvents implements PostHandler {
     public void playerSmokeChange(int smoked) {
         if (!bombFlashing && roundLive) {
             LEDServiceAction flashAction = new LEDServiceAction(LEDServiceActionType.STATIC,
-                    new LEDColour(smoked, smoked, smoked), null, LEDServiceQueueCondition.JUMP_QUEUE, (smoked > 0 ? 7500 : 250)
+                    null, new LEDColour(smoked, smoked, smoked), LEDServiceQueueCondition.JUMP_QUEUE, (smoked > 0 ? 7500 : 250)
             );
 
             LEDHub.getInstance().getServiceHandler().addToServiceQueue(flashAction);
