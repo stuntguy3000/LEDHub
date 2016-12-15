@@ -1,46 +1,12 @@
 {
   "serialPort": "com3",
+  "ledMultiplier": 1.0,
   "services": [
     {
       "serviceName": "csgo",
       "serviceActions": {
-        "onHitRed": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250
-        },
         "onDeath": {
           "type": "TRANSITION",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "startColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 500
-        },
-        "onHitGreen": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250
-        },
-        "bombFlash": {
-          "type": "TRANSITION",
           "startColour": {
             "r": 255,
             "g": 0,
@@ -51,78 +17,9 @@
             "g": 0,
             "b": 0
           },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 125
-        },
-        "black": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 100
-        },
-        "bombExplode1": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
-        },
-        "bombExplode2": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
-        },
-        "bombDefuse1": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
-        },
-        "bombDefuse2": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
-        },
-        "ctTeam": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000
-        },
-        "tTeam": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 255,
-            "g": 165,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000
+          "actionLife": 500,
+          "playCount": 0
         },
         "ctTeamWin": {
           "type": "CUT",
@@ -137,7 +34,90 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
+        },
+        "black": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "JUMP_QUEUE",
+          "actionLife": 100,
+          "playCount": 0
+        },
+        "bombFlash": {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 125,
+          "playCount": 0
+        },
+        "ctTeam": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "JUMP_QUEUE",
+          "actionLife": 1000,
+          "playCount": 0
+        },
+        "bombExplode1": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 100,
+          "playCount": 0
+        },
+        "onHitRed": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "RUN_IF_FREE",
+          "actionLife": 250,
+          "playCount": 0
+        },
+        "bombExplode2": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 100,
+          "playCount": 0
+        },
+        "tTeam": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 255,
+            "g": 165,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "JUMP_QUEUE",
+          "actionLife": 1000,
+          "playCount": 0
         },
         "tTeamWin": {
           "type": "CUT",
@@ -152,7 +132,41 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
+        },
+        "onHitGreen": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "RUN_IF_FREE",
+          "actionLife": 250,
+          "playCount": 0
+        },
+        "bombDefuse1": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 100,
+          "playCount": 0
+        },
+        "bombDefuse2": {
+          "type": "STATIC",
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 100,
+          "playCount": 0
         }
       }
     }
@@ -163,68 +177,125 @@
       "actions": [
         {
           "type": "TRANSITION",
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
           "startColour": {
             "r": 0,
             "g": 0,
             "b": 255
           },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 1000
-        },
-        {
-          "type": "TRANSITION",
           "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "startColour": {
             "r": 255,
             "g": 0,
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 1000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 255
-          },
           "startColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
             "r": 0,
             "g": 255,
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 1000
+          "actionLife": 2000,
+          "playCount": 0
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000,
+          "playCount": 0
         }
       ]
     },
     {
-      "backgroundName": "Police Lights",
+      "backgroundName": "Police Lights Single",
       "actions": [
         {
           "type": "CUT",
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
           "startColour": {
             "r": 0,
             "g": 0,
             "b": 255
           },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 500
+          "actionLife": 500,
+          "playCount": 50
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 500,
+          "playCount": 50
+        }
+      ]
+    },
+    {
+      "backgroundName": "Police Lights Strobe",
+      "actions": [
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 150,
+          "playCount": 5
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 150,
+          "playCount": 5
         }
       ]
     }

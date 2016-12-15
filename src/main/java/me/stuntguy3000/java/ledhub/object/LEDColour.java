@@ -13,8 +13,9 @@ public class LEDColour {
     private int g;
     private int b;
 
-    @Override
-    public String toString() {
-        return "r" + r + ";g" + g + ";b" + b + ";";
+    public String getString(double multiplier) {
+        return "r" + (int) (r * multiplier) +
+                ";g" + (int) (g * multiplier) +
+                ";b" + (int) (b * multiplier) + ";";
     }
 }

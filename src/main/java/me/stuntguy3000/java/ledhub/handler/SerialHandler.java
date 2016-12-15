@@ -2,15 +2,15 @@ package me.stuntguy3000.java.ledhub.handler;
 
 import jssc.SerialPort;
 import jssc.SerialPortException;
-import lombok.Getter;
+import lombok.Data;
 import me.stuntguy3000.java.ledhub.LEDHub;
 
 /**
  * @author stuntguy3000
  */
+@Data
 public class SerialHandler {
     private String lastSent = "";
-    @Getter
     private SerialPort serialPort;
 
     public void sendData(String data) {

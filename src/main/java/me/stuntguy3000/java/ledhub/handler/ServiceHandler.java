@@ -78,8 +78,7 @@ public class ServiceHandler {
 
                 LEDHub.getInstance().getThreadHandler().getNewTask(defaultBackground.getActions()).start();
             } else {
-                LEDHub.getInstance().getThreadHandler().getNewTask(
-                        serviceBackground).start();
+                LEDHub.getInstance().getThreadHandler().getNewTask(serviceBackground).start();
             }
         }
     }

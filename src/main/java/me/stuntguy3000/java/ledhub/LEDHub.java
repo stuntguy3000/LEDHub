@@ -13,6 +13,7 @@ import java.util.Arrays;
  * @author stuntguy3000
  */
 public class LEDHub {
+    public static double MULTIPLIER = 1;
     /**
      * Instance of LEDHub
      */
@@ -159,6 +160,12 @@ public class LEDHub {
         timerHandler = new TimerHandler();
         appHandler = new AppHandler();
         threadHandler = new ThreadHandler();
+
+        MULTIPLIER = getConfigHandler().getMainConfiguration().getLedMultiplier();
+
+        if (MULTIPLIER <= 0) {
+            MULTIPLIER = 1;
+        }
 
         /**
          * Connect to the Serial port

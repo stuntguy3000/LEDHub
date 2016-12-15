@@ -24,22 +24,34 @@ public class LEDServiceActionTask extends Thread {
         try {
             for (LEDServiceAction action : actions) {
                 if (action != null) {
+                    int playCount = action.getPlayCount();
+
+                    if (playCount < 1) {
+                        playCount = 1;
+                    }
+
                     switch (action.getType()) {
                         case STATIC: {
-                            LEDHub.getInstance().getSerialHandler().sendData(action.getEndColour().toString());
-                            long expireTime = action.getActionLife();
+                            for (int i = 0; i < playCount; i++) {
+                                LEDHub.getInstance().getSerialHandler().sendData(action.getEndColour().getString(LEDHub.MULTIPLIER));
+                                long expireTime = action.getActionLife();
 
-                            if (expireTime > 0) {
-                                Thread.sleep(expireTime);
+                                if (expireTime > 0) {
+                                    Thread.sleep(expireTime);
+                                }
                             }
                             break;
                         }
                         case TRANSITION: {
-                            TimerHandler.fadeColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                            for (int i = 0; i < playCount; i++) {
+                                TimerHandler.fadeColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                            }
                             break;
                         }
                         case CUT: {
-                            TimerHandler.cutColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                            for (int i = 0; i < playCount; i++) {
+                                TimerHandler.cutColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
+                            }
                             break;
                         }
                     }
