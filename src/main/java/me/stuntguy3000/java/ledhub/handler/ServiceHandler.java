@@ -116,6 +116,11 @@ public class ServiceHandler {
 
     public void reset() {
         serviceBackground = null;
+
+        if (LEDHub.getInstance().getThreadHandler().getLedServiceActionTask() != null) {
+            LEDHub.getInstance().getThreadHandler().getLedServiceActionTask().interrupt();
+        }
+
         getServiceQueue().clear();
         isBackgroundRunning = false;
     }

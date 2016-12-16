@@ -1,6 +1,6 @@
 package me.stuntguy3000.java.ledhub.handler;
 
-import lombok.Getter;
+import lombok.Data;
 import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.task.LEDServiceActionTask;
 
@@ -9,8 +9,8 @@ import java.util.LinkedList;
 /**
  * @author stuntguy3000
  */
+@Data
 public class ThreadHandler {
-    @Getter
     private LEDServiceActionTask ledServiceActionTask;
 
     public Thread getNewTask(LEDServiceAction ledServiceAction) {
