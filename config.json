@@ -19,7 +19,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 500
+          "actionLife": 500,
+          "playCount": 0
         },
         "ctTeamWin": {
           "type": "CUT",
@@ -34,7 +35,8 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
         },
         "black": {
           "type": "STATIC",
@@ -44,7 +46,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 100
+          "actionLife": 100,
+          "playCount": 0
         },
         "bombFlash": {
           "type": "TRANSITION",
@@ -59,7 +62,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 125
+          "actionLife": 125,
+          "playCount": 0
         },
         "ctTeam": {
           "type": "STATIC",
@@ -69,7 +73,8 @@
             "b": 255
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000
+          "actionLife": 1000,
+          "playCount": 0
         },
         "bombExplode1": {
           "type": "STATIC",
@@ -79,7 +84,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
+          "actionLife": 100,
+          "playCount": 0
         },
         "onHitRed": {
           "type": "STATIC",
@@ -89,7 +95,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250
+          "actionLife": 250,
+          "playCount": 0
         },
         "bombExplode2": {
           "type": "STATIC",
@@ -99,7 +106,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
+          "actionLife": 100,
+          "playCount": 0
         },
         "tTeam": {
           "type": "STATIC",
@@ -109,7 +117,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000
+          "actionLife": 1000,
+          "playCount": 0
         },
         "tTeamWin": {
           "type": "CUT",
@@ -124,7 +133,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
         },
         "onHitGreen": {
           "type": "STATIC",
@@ -134,7 +144,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250
+          "actionLife": 250,
+          "playCount": 0
         },
         "bombDefuse1": {
           "type": "STATIC",
@@ -144,7 +155,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
+          "actionLife": 100,
+          "playCount": 0
         },
         "bombDefuse2": {
           "type": "STATIC",
@@ -154,7 +166,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100
+          "actionLife": 100,
+          "playCount": 0
         }
       }
     }
@@ -162,7 +175,6 @@
   "backgrounds": [
     {
       "backgroundName": "Colour Fade",
-      "shuffle": false,
       "actions": [
         {
           "type": "TRANSITION",
@@ -177,7 +189,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -192,7 +205,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -207,13 +221,14 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Colour-Black Fade",
-      "shuffle": false,
       "actions": [
         {
           "type": "TRANSITION",
@@ -228,7 +243,8 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -243,7 +259,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -258,7 +275,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -273,7 +291,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -288,7 +307,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -303,7 +323,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -318,7 +339,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -333,7 +355,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
@@ -343,48 +366,19 @@
             "b": 0
           },
           "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
-        },
-        {
-          "type": "TRANSITION",
-          "startColour": {
             "r": 0,
             "g": 255,
             "b": 255
           },
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
         },
         {
           "type": "TRANSITION",
           "startColour": {
             "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
-        },
-        {
-          "type": "TRANSITION",
-          "startColour": {
-            "r": 255,
-            "g": 0,
+            "g": 255,
             "b": 255
           },
           "endColour": {
@@ -393,13 +387,46 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000
+          "actionLife": 2000,
+          "playCount": 0
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000,
+          "playCount": 0
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000,
+          "playCount": 0
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Colour Strobe Flash",
-      "shuffle": true,
       "actions": [
         {
           "type": "CUT",
@@ -409,87 +436,13 @@
             "b": 0
           },
           "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
             "r": 255,
             "g": 255,
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 255,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
         },
         {
           "type": "CUT",
@@ -504,13 +457,94 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
         }
-      ]
+      ],
+      "shuffle": true
     },
     {
       "backgroundName": "Colour Strobe",
-      "shuffle": true,
       "actions": [
         {
           "type": "STATIC",
@@ -520,27 +554,13 @@
             "b": 0
           },
           "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "STATIC",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
             "r": 255,
-            "g": 255,
+            "g": 0,
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
         },
         {
           "type": "STATIC",
@@ -555,37 +575,8 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "STATIC",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
-        },
-        {
-          "type": "STATIC",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 255,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
         },
         {
           "type": "STATIC",
@@ -600,7 +591,8 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
         },
         {
           "type": "STATIC",
@@ -611,17 +603,66 @@
           },
           "endColour": {
             "r": 255,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
             "g": 0,
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
         }
-      ]
+      ],
+      "shuffle": true
     },
     {
       "backgroundName": "Police Lights Single",
-      "shuffle": false,
       "actions": [
         {
           "type": "CUT",
@@ -655,11 +696,11 @@
           "actionLife": 500,
           "playCount": 50
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Police Lights Strobe",
-      "shuffle": false,
       "actions": [
         {
           "type": "CUT",
@@ -692,6 +733,183 @@
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
           "actionLife": 150,
           "playCount": 5
+        }
+      ],
+      "shuffle": false
+    },
+    {
+      "backgroundName": "White",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
+        }
+      ]
+    },
+    {
+      "backgroundName": "Black",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
+        }
+      ]
+    },
+    {
+      "backgroundName": "Red",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
+        }
+      ]
+    },
+    {
+      "backgroundName": "Blue",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
+        }
+      ]
+    },
+    {
+      "backgroundName": "Green",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
+        }
+      ]
+    },
+    {
+      "backgroundName": "Yellow",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
+        }
+      ]
+    },
+    {
+      "backgroundName": "Magenta",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
+        }
+      ]
+    },
+    {
+      "backgroundName": "Aqua",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": -1,
+          "playCount": 1
         }
       ]
     }
