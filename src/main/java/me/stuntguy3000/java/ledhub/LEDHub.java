@@ -144,7 +144,7 @@ public class LEDHub {
 
     private void startWebserver() throws Exception {
         Tomcat tomcat = new Tomcat();
-        tomcat.setPort(8123);
+        tomcat.setPort(configHandler.getMainConfiguration().getWebserverPort());
         tomcat.getHost().setAppBase(".");
         tomcat.addWebapp("/", ".");
         tomcat.start();

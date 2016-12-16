@@ -1,6 +1,7 @@
 {
   "serialPort": "com3",
   "ledMultiplier": 1.0,
+  "webserverPort": 8123,
   "services": [
     {
       "serviceName": "csgo",
@@ -18,8 +19,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 500,
-          "playCount": 0
+          "actionLife": 500
         },
         "ctTeamWin": {
           "type": "CUT",
@@ -34,8 +34,7 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
+          "actionLife": 200
         },
         "black": {
           "type": "STATIC",
@@ -45,8 +44,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
+          "actionLife": 100
         },
         "bombFlash": {
           "type": "TRANSITION",
@@ -61,8 +59,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 125,
-          "playCount": 0
+          "actionLife": 125
         },
         "ctTeam": {
           "type": "STATIC",
@@ -72,8 +69,7 @@
             "b": 255
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000,
-          "playCount": 0
+          "actionLife": 1000
         },
         "bombExplode1": {
           "type": "STATIC",
@@ -83,8 +79,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
+          "actionLife": 100
         },
         "onHitRed": {
           "type": "STATIC",
@@ -94,8 +89,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250,
-          "playCount": 0
+          "actionLife": 250
         },
         "bombExplode2": {
           "type": "STATIC",
@@ -105,8 +99,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
+          "actionLife": 100
         },
         "tTeam": {
           "type": "STATIC",
@@ -116,8 +109,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000,
-          "playCount": 0
+          "actionLife": 1000
         },
         "tTeamWin": {
           "type": "CUT",
@@ -132,8 +124,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
+          "actionLife": 200
         },
         "onHitGreen": {
           "type": "STATIC",
@@ -143,8 +134,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250,
-          "playCount": 0
+          "actionLife": 250
         },
         "bombDefuse1": {
           "type": "STATIC",
@@ -154,8 +144,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
+          "actionLife": 100
         },
         "bombDefuse2": {
           "type": "STATIC",
@@ -165,15 +154,15 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
+          "actionLife": 100
         }
       }
     }
   ],
   "backgrounds": [
     {
-      "backgroundName": "rgbFade",
+      "backgroundName": "Colour Fade",
+      "shuffle": false,
       "actions": [
         {
           "type": "TRANSITION",
@@ -188,8 +177,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000,
-          "playCount": 0
+          "actionLife": 2000
         },
         {
           "type": "TRANSITION",
@@ -204,8 +192,7 @@
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000,
-          "playCount": 0
+          "actionLife": 2000
         },
         {
           "type": "TRANSITION",
@@ -220,13 +207,421 @@
             "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 2000,
-          "playCount": 0
+          "actionLife": 2000
+        }
+      ]
+    },
+    {
+      "backgroundName": "Colour-Black Fade",
+      "shuffle": false,
+      "actions": [
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000
+        }
+      ]
+    },
+    {
+      "backgroundName": "Colour Strobe Flash",
+      "shuffle": true,
+      "actions": [
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        }
+      ]
+    },
+    {
+      "backgroundName": "Colour Strobe",
+      "shuffle": true,
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200
         }
       ]
     },
     {
       "backgroundName": "Police Lights Single",
+      "shuffle": false,
       "actions": [
         {
           "type": "CUT",
@@ -264,6 +659,7 @@
     },
     {
       "backgroundName": "Police Lights Strobe",
+      "shuffle": false,
       "actions": [
         {
           "type": "CUT",

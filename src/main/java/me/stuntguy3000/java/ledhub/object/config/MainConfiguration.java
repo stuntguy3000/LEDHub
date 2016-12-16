@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public class MainConfiguration {
     private String serialPort = "COM3";
     private double ledMultiplier = 1;
+    private int webserverPort = 8123;
     private ArrayList<LEDService> services = new ArrayList<>();
     private ArrayList<LEDBackground> backgrounds = new ArrayList<>();
 

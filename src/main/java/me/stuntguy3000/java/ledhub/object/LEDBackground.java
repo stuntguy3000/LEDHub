@@ -13,4 +13,5 @@ import java.util.LinkedList;
 public class LEDBackground {
     private String backgroundName;
     private LinkedList<LEDServiceAction> actions;
+    private boolean shuffle = false;
 }

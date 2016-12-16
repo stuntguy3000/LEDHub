@@ -90,7 +90,7 @@ public class ConfigHandler {
             ledServiceActions.add(fadeRedToGreen);
             ledServiceActions.add(fadeGreenToBlue);
 
-            LEDBackground ledBackground = new LEDBackground("rgbFade", ledServiceActions);
+            LEDBackground ledBackground = new LEDBackground("rgbFade", ledServiceActions, false);
 
             mainConfiguration.getBackgrounds().add(ledBackground);
             mainConfiguration.getServices().add(ledService);

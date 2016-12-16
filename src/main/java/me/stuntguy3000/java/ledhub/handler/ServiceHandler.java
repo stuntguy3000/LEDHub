@@ -8,6 +8,7 @@ import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -74,6 +75,10 @@ public class ServiceHandler {
                     } else {
                         return;
                     }
+                }
+
+                if (defaultBackground.isShuffle()) {
+                    Collections.shuffle(defaultBackground.getActions());
                 }
 
                 LEDHub.getInstance().getThreadHandler().getNewTask(defaultBackground.getActions()).start();
