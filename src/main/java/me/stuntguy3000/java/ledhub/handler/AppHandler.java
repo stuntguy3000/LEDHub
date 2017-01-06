@@ -3,9 +3,9 @@ package me.stuntguy3000.java.ledhub.handler;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import me.stuntguy3000.java.ledhub.LEDHub;
+import me.stuntguy3000.java.ledhub.object.LEDAction;
 import me.stuntguy3000.java.ledhub.object.LEDBackground;
 import me.stuntguy3000.java.ledhub.object.LEDService;
-import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
 import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
 import javax.imageio.ImageIO;
@@ -13,6 +13,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -59,9 +60,10 @@ public class AppHandler {
         for (LEDService service : serviceHandler.getAllServices()) {
             Menu subMenu = new Menu(service.getServiceName());
 
-            for (Map.Entry<String, LEDServiceAction> ledServiceAction : service.getServiceActions().entrySet()) {
+            for (Map.Entry<String, LinkedList<LEDAction>> ledServiceAction : service.getServiceActions().entrySet()) {
+                LinkedList<LEDAction> serviceAction = ledServiceAction.getValue();
                 MenuItem actionButton = new MenuItem(ledServiceAction.getKey());
-                actionButton.addActionListener(new ServiceMenuItem(ledServiceAction.getValue(), serviceHandler));
+                actionButton.addActionListener(new ServiceMenuItem(serviceAction, serviceHandler));
 
                 subMenu.add(actionButton);
             }
@@ -93,13 +95,12 @@ public class AppHandler {
     @Data
     @AllArgsConstructor
     private class ServiceMenuItem implements ActionListener {
-        private LEDServiceAction ledServiceAction;
+        private LinkedList<LEDAction> ledAction;
         private ServiceHandler serviceHandler;
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            serviceHandler.addToServiceQueue(ledServiceAction);
-            serviceHandler.processQueue();
+            serviceHandler.addToServiceQueue(ledAction);
         }
     }
 

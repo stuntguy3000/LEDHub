@@ -8,7 +8,6 @@ import me.stuntguy3000.java.ledhub.object.*;
 import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
 import java.io.*;
-import java.util.HashMap;
 import java.util.LinkedList;
 
 // @author Luke Anderson | stuntguy3000
@@ -56,44 +55,29 @@ public class ConfigHandler {
             mainConfiguration = new MainConfiguration();
             mainConfiguration.setSerialPort("com3");
 
-            HashMap<String, LEDServiceAction> actions = new HashMap<>();
-            actions.put("enable",
-                    new LEDServiceAction(
-                            LEDServiceActionType.STATIC,
-                            null, new LEDColour(255, 255, 255),
-                            LEDServiceQueueCondition.ALWAYS_QUEUE, 2000));
-            actions.put("changegreen",
-                    new LEDServiceAction(
-                            LEDServiceActionType.TRANSITION,
-                            null, new LEDColour(255, 255, 255),
-                            LEDServiceQueueCondition.ALWAYS_QUEUE, 2000));
-
-            LEDService ledService = new LEDService("sampleService", actions);
-
-            LEDServiceAction fadeBlueToRed = new LEDServiceAction(
+            LEDAction fadeBlueToRed = new LEDAction(
                     LEDServiceActionType.TRANSITION,
                     new LEDColour(0, 0, 255), new LEDColour(255, 0, 0),
                     LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
 
-            LEDServiceAction fadeRedToGreen = new LEDServiceAction(
+            LEDAction fadeRedToGreen = new LEDAction(
                     LEDServiceActionType.TRANSITION,
                     new LEDColour(255, 0, 0), new LEDColour(0, 255, 0),
                     LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
 
-            LEDServiceAction fadeGreenToBlue = new LEDServiceAction(
+            LEDAction fadeGreenToBlue = new LEDAction(
                     LEDServiceActionType.TRANSITION,
                     new LEDColour(0, 255, 0), new LEDColour(0, 0, 255),
                     LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
 
-            LinkedList<LEDServiceAction> ledServiceActions = new LinkedList<>();
-            ledServiceActions.add(fadeBlueToRed);
-            ledServiceActions.add(fadeRedToGreen);
-            ledServiceActions.add(fadeGreenToBlue);
+            LinkedList<LEDAction> ledActions = new LinkedList<>();
+            ledActions.add(fadeBlueToRed);
+            ledActions.add(fadeRedToGreen);
+            ledActions.add(fadeGreenToBlue);
 
-            LEDBackground ledBackground = new LEDBackground("rgbFade", ledServiceActions, false);
+            LEDBackground ledBackground = new LEDBackground("rgbFade", ledActions, false);
 
             mainConfiguration.getBackgrounds().add(ledBackground);
-            mainConfiguration.getServices().add(ledService);
         }
 
         String json = gson.toJson(mainConfiguration);

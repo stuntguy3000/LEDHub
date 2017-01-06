@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.handler.TimerHandler;
-import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
+import me.stuntguy3000.java.ledhub.object.LEDAction;
 
 import java.util.LinkedList;
 
@@ -15,14 +15,14 @@ import java.util.LinkedList;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @AllArgsConstructor
-public class LEDServiceActionTask extends Thread {
+public class LEDActionExecutor extends Thread {
 
-    private LinkedList<LEDServiceAction> actions;
+    private LinkedList<LEDAction> actions;
 
     @Override
     public void run() {
         try {
-            for (LEDServiceAction action : actions) {
+            for (LEDAction action : actions) {
                 if (action != null) {
                     int playCount = action.getPlayCount();
 
@@ -54,6 +54,10 @@ public class LEDServiceActionTask extends Thread {
                             }
                             break;
                         }
+                    }
+
+                    if (action.getEndDelay() > 0) {
+                        Thread.sleep(action.getEndDelay());
                     }
                 }
             }

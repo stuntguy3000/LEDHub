@@ -8,5 +8,5 @@ import lombok.Data;
 @Data
 public class LEDServiceActionWrapper {
     private String actionName;
-    private LEDServiceAction ledServiceActionType;
+    private LEDAction ledActionType;
 }

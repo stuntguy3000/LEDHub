@@ -1,4 +1,4 @@
-package me.stuntguy3000.java.ledhub.hook;
+package me.stuntguy3000.java.ledhub.hook.csgo;
 
 import com.brekcel.csgostate.Server;
 
@@ -12,7 +12,7 @@ public class CSGOHook {
     public void init() {
         try {
             System.out.println("Starting CSGO Hook");
-            Server server = new Server(3000, new CSGOEvents(), false);
+            new Server(3000, new CSGOEvents(), false);
         } catch (IOException e) {
             e.printStackTrace();
         }

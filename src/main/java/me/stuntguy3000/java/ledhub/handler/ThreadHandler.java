@@ -1,8 +1,8 @@
 package me.stuntguy3000.java.ledhub.handler;
 
 import lombok.Data;
-import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
-import me.stuntguy3000.java.ledhub.task.LEDServiceActionTask;
+import me.stuntguy3000.java.ledhub.object.LEDAction;
+import me.stuntguy3000.java.ledhub.task.LEDActionExecutor;
 
 import java.util.LinkedList;
 
@@ -11,21 +11,21 @@ import java.util.LinkedList;
  */
 @Data
 public class ThreadHandler {
-    private LEDServiceActionTask ledServiceActionTask;
+    private LEDActionExecutor ledActionExecutor;
 
-    public Thread getNewTask(LEDServiceAction ledServiceAction) {
-        LinkedList<LEDServiceAction> ledServiceActions = new LinkedList<>();
-        ledServiceActions.add(ledServiceAction);
+    public Thread getNewTask(LEDAction ledAction) {
+        LinkedList<LEDAction> ledActions = new LinkedList<>();
+        ledActions.add(ledAction);
 
-        return getNewTask(ledServiceActions);
+        return getNewTask(ledActions);
     }
 
-    public LEDServiceActionTask getNewTask(LinkedList<LEDServiceAction> actions) {
-        if (ledServiceActionTask != null) {
-            ledServiceActionTask.interrupt();
+    public LEDActionExecutor getNewTask(LinkedList<LEDAction> actions) {
+        if (ledActionExecutor != null) {
+            ledActionExecutor.interrupt();
         }
 
-        ledServiceActionTask = new LEDServiceActionTask(actions);
-        return ledServiceActionTask;
+        ledActionExecutor = new LEDActionExecutor(actions);
+        return ledActionExecutor;
     }
 }

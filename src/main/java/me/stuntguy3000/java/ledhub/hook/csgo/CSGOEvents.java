@@ -1,10 +1,12 @@
-package me.stuntguy3000.java.ledhub.hook;
+package me.stuntguy3000.java.ledhub.hook.csgo;
 
 import com.brekcel.csgostate.JSON.*;
 import com.brekcel.csgostate.post.PostHandler;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.handler.ServiceHandler;
 import me.stuntguy3000.java.ledhub.object.*;
+
+import java.util.LinkedList;
 
 /**
  * @author stuntguy3000
@@ -82,18 +84,17 @@ public class CSGOEvents implements PostHandler {
 
     @Override
     public void bombPlanted() {
-        bombFlashing = true;
+        /*bombFlashing = true;
 
         LEDService service = serviceHandler.getService("csgo");
-        LEDServiceAction bombFlash = service.getServiceActions().get("bombFlash");
+        LinkedList<LEDAction> bombFlash = service.getServiceActions().get("bombFlash");
 
         if (bombFlash != null) {
             for (int i = 0; i < 45; i++) {
-                LEDServiceAction newBombFlash = bombFlash.clone();
                 newBombFlash.setActionLife(1000);
                 serviceHandler.addToServiceQueue(newBombFlash);
             }
-        }
+        }*/
     }
 
     @Override
@@ -101,9 +102,9 @@ public class CSGOEvents implements PostHandler {
         if (bombFlashing) {
             bombFlashing = false;
             LEDService service = serviceHandler.getService("csgo");
-            LEDServiceAction bombExplode1 = service.getServiceActions().get("bombExplode1");
-            LEDServiceAction bombExplode2 = service.getServiceActions().get("bombExplode2");
-            LEDServiceAction black = service.getServiceActions().get("black");
+            LinkedList<LEDAction> bombExplode1 = service.getServiceActions().get("bombExplode1");
+            LinkedList<LEDAction> bombExplode2 = service.getServiceActions().get("bombExplode2");
+            LinkedList<LEDAction> black = service.getServiceActions().get("black");
 
             serviceHandler.getServiceQueue().clear();
             serviceHandler.addToServiceQueue(black);
@@ -120,9 +121,9 @@ public class CSGOEvents implements PostHandler {
         if (bombFlashing) {
             bombFlashing = false;
             LEDService service = serviceHandler.getService("csgo");
-            LEDServiceAction bombDefuse1 = service.getServiceActions().get("bombDefuse1");
-            LEDServiceAction bombDefuse2 = service.getServiceActions().get("bombDefuse2");
-            LEDServiceAction black = service.getServiceActions().get("black");
+            LinkedList<LEDAction> bombDefuse1 = service.getServiceActions().get("bombDefuse1");
+            LinkedList<LEDAction> bombDefuse2 = service.getServiceActions().get("bombDefuse2");
+            LinkedList<LEDAction> black = service.getServiceActions().get("black");
 
             serviceHandler.getServiceQueue().clear();
             serviceHandler.addToServiceQueue(black);
@@ -140,14 +141,14 @@ public class CSGOEvents implements PostHandler {
             LEDService service = serviceHandler.getService("csgo");
 
             for (int i = 0; i < 5; i++) {
-                LEDServiceAction team = service.getServiceActions().get("tTeamWin");
+                LinkedList<LEDAction> team = service.getServiceActions().get("tTeamWin");
                 serviceHandler.addToServiceQueue(team);
             }
         } else {
             LEDService service = serviceHandler.getService("csgo");
 
             for (int i = 0; i < 5; i++) {
-                LEDServiceAction team = service.getServiceActions().get("ctTeamWin");
+                LinkedList<LEDAction> team = service.getServiceActions().get("ctTeamWin");
                 serviceHandler.addToServiceQueue(team);
             }
         }
@@ -203,11 +204,18 @@ public class CSGOEvents implements PostHandler {
     @Override
     public void playerTeamChange(String team) {
         if (team.equalsIgnoreCase("ct")) {
-            serviceHandler.setServiceBackground(serviceHandler.getService("csgo").getServiceActions().get("ctTeam"));
+            serviceHandler.setServiceBackground(
+                    new LEDBackground(
+                            "ct",
+                            serviceHandler.getService("csgo").getServiceActions().get("ctTeam"),
+                            false));
             serviceHandler.processQueue();
             currentTeam = "ct";
         } else {
-            serviceHandler.setServiceBackground(serviceHandler.getService("csgo").getServiceActions().get("tTeam"));
+            serviceHandler.setServiceBackground(
+                    new LEDBackground(
+                            "t", serviceHandler.getService("csgo").getServiceActions().get("tTeam"),
+                            false));
             serviceHandler.processQueue();
             currentTeam = "t";
         }
@@ -251,7 +259,7 @@ public class CSGOEvents implements PostHandler {
     @Override
     public void playerFlashedChange(int flashed) {
         if (!bombFlashing && roundLive) {
-            LEDServiceAction flashAction = new LEDServiceAction(LEDServiceActionType.STATIC,
+            LEDAction flashAction = new LEDAction(LEDServiceActionType.STATIC,
                     null, new LEDColour(flashed, flashed, flashed), LEDServiceQueueCondition.JUMP_QUEUE, (flashed > 0 ? 7500 : 250)
             );
 
@@ -262,7 +270,7 @@ public class CSGOEvents implements PostHandler {
     @Override
     public void playerSmokeChange(int smoked) {
         if (!bombFlashing && roundLive) {
-            LEDServiceAction flashAction = new LEDServiceAction(LEDServiceActionType.STATIC,
+            LEDAction flashAction = new LEDAction(LEDServiceActionType.STATIC,
                     null, new LEDColour(smoked, smoked, smoked), LEDServiceQueueCondition.JUMP_QUEUE, (smoked > 0 ? 7500 : 250)
             );
 

@@ -1,174 +1,204 @@
 {
   "serialPort": "com3",
   "ledMultiplier": 1.0,
-  "webserverPort": 8123,
   "services": [
     {
-      "serviceName": "csgo",
+      "serviceName": "Counter Strike: Global Offensive",
       "serviceActions": {
-        "onDeath": {
-          "type": "TRANSITION",
-          "startColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
+        "onDeath": [
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 255,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE",
+            "actionLife": 500,
+            "playCount": 0
+          }
+        ],
+        "ctTeamWin": [
+          {
+            "type": "CUT",
+            "startColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 255,
+              "b": 255
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 200,
+            "playCount": 0
+          }
+        ],
+        "black": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE",
+            "actionLife": 100,
+            "playCount": 0
+          }
+        ],
+        "bombFlash": [
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 255,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 125,
+            "playCount": 0
+          }
+        ],
+        "ctTeam": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 0,
+              "g": 255,
+              "b": 255
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE",
+            "actionLife": 1000,
+            "playCount": 0
+          }
+        ],
+        "onHitRed": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 255,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "RUN_IF_FREE",
+            "actionLife": 250,
+            "playCount": 0
+          }
+        ],
+        "tTeam": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 255,
+              "g": 165,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE",
+            "actionLife": 1000,
+            "playCount": 0
+          }
+        ],
+        "tTeamWin": [
+          {
+            "type": "CUT",
+            "startColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 255,
+              "g": 165,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 200,
+            "playCount": 0
+          }
+        ],
+        "onHitGreen": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 0,
+              "g": 255,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "RUN_IF_FREE",
+            "actionLife": 250,
+            "playCount": 0
+          }
+        ]
+      }
+    },
+    {
+      "serviceName": "Rocket League",
+      "serviceActions": {
+        "Game Open": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 255,
+              "g": 69,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 5000
           },
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 255,
+              "g": 69,
+              "b": 0
+            },
+            "endColour": {
+              "r": 44,
+              "g": 100,
+              "b": 255
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 2000
           },
-          "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 500,
-          "playCount": 0
-        },
-        "ctTeamWin": {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 44,
+              "g": 100,
+              "b": 255
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "endDelay": 5000
           },
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        "black": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
-        },
-        "bombFlash": {
-          "type": "TRANSITION",
-          "startColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 125,
-          "playCount": 0
-        },
-        "ctTeam": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000,
-          "playCount": 0
-        },
-        "bombExplode1": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
-        },
-        "onHitRed": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250,
-          "playCount": 0
-        },
-        "bombExplode2": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
-        },
-        "tTeam": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 255,
-            "g": 165,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "JUMP_QUEUE",
-          "actionLife": 1000,
-          "playCount": 0
-        },
-        "tTeamWin": {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 255,
-            "g": 165,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        "onHitGreen": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "RUN_IF_FREE",
-          "actionLife": 250,
-          "playCount": 0
-        },
-        "bombDefuse1": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
-        },
-        "bombDefuse2": {
-          "type": "STATIC",
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 100,
-          "playCount": 0
-        }
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 44,
+              "g": 100,
+              "b": 255
+            },
+            "endColour": {
+              "r": 255,
+              "g": 69,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 2000
+          }
+        ]
       }
     }
   ],
@@ -219,6 +249,76 @@
             "r": 0,
             "g": 0,
             "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000,
+          "playCount": 0
+        }
+      ],
+      "shuffle": false
+    },
+    {
+      "backgroundName": "Christmas",
+      "actions": [
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 10000,
+          "playCount": 0
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 2000,
+          "playCount": 0
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 10000,
+          "playCount": 0
+        },
+        {
+          "type": "TRANSITION",
+          "startColour": {
+            "r": 0,
+            "g": 255,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
           "actionLife": 2000,
@@ -436,70 +536,6 @@
             "b": 0
           },
           "endColour": {
-            "r": 255,
-            "g": 255,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        {
-          "type": "CUT",
-          "startColour": {
-            "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
             "r": 0,
             "g": 255,
             "b": 0
@@ -532,9 +568,73 @@
             "b": 0
           },
           "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 0,
+            "g": 255,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
             "r": 255,
             "g": 0,
             "b": 0
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "CUT",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
           "actionLife": 200,
@@ -554,24 +654,8 @@
             "b": 0
           },
           "endColour": {
-            "r": 255,
-            "g": 0,
-            "b": 255
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        {
-          "type": "STATIC",
-          "startColour": {
             "r": 0,
-            "g": 0,
-            "b": 0
-          },
-          "endColour": {
-            "r": 255,
-            "g": 0,
+            "g": 255,
             "b": 0
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
@@ -602,6 +686,38 @@
             "b": 0
           },
           "endColour": {
+            "r": 0,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
+            "r": 255,
+            "g": 0,
+            "b": 255
+          },
+          "ledServiceQueueCondition": "ALWAYS_QUEUE",
+          "actionLife": 200,
+          "playCount": 0
+        },
+        {
+          "type": "STATIC",
+          "startColour": {
+            "r": 0,
+            "g": 0,
+            "b": 0
+          },
+          "endColour": {
             "r": 255,
             "g": 255,
             "b": 255
@@ -618,25 +734,9 @@
             "b": 0
           },
           "endColour": {
-            "r": 0,
-            "g": 255,
-            "b": 0
-          },
-          "ledServiceQueueCondition": "ALWAYS_QUEUE",
-          "actionLife": 200,
-          "playCount": 0
-        },
-        {
-          "type": "STATIC",
-          "startColour": {
-            "r": 0,
+            "r": 255,
             "g": 0,
             "b": 0
-          },
-          "endColour": {
-            "r": 0,
-            "g": 0,
-            "b": 255
           },
           "ledServiceQueueCondition": "ALWAYS_QUEUE",
           "actionLife": 200,
@@ -739,7 +839,6 @@
     },
     {
       "backgroundName": "White",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -757,11 +856,11 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Black",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -779,11 +878,11 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Red",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -801,11 +900,11 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Blue",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -823,11 +922,11 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Green",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -845,11 +944,11 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Yellow",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -867,11 +966,11 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Magenta",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -889,11 +988,11 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     },
     {
       "backgroundName": "Aqua",
-      "shuffle": false,
       "actions": [
         {
           "type": "STATIC",
@@ -911,7 +1010,8 @@
           "actionLife": -1,
           "playCount": 1
         }
-      ]
+      ],
+      "shuffle": false
     }
   ]
 }

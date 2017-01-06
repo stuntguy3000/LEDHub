@@ -12,6 +12,6 @@ import java.util.LinkedList;
 @AllArgsConstructor
 public class LEDBackground {
     private String backgroundName;
-    private LinkedList<LEDServiceAction> actions;
+    private LinkedList<LEDAction> actions;
     private boolean shuffle = false;
 }

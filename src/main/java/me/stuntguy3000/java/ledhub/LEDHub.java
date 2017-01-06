@@ -2,12 +2,13 @@ package me.stuntguy3000.java.ledhub;
 
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.handler.*;
-import me.stuntguy3000.java.ledhub.hook.CSGOHook;
+import me.stuntguy3000.java.ledhub.hook.csgo.CSGOHook;
+import me.stuntguy3000.java.ledhub.hook.rocketleague.RocketLeagueHook;
+import me.stuntguy3000.java.ledhub.object.LEDAction;
 import me.stuntguy3000.java.ledhub.object.LEDService;
-import me.stuntguy3000.java.ledhub.object.LEDServiceAction;
-import org.apache.catalina.startup.Tomcat;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 
 /**
  * @author stuntguy3000
@@ -54,7 +55,6 @@ public class LEDHub {
         // Register Handlers/Start Webserver
         try {
             registerHandlers();
-            startWebserver();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -112,19 +112,19 @@ public class LEDHub {
                                 System.out.println(String.format(" LED Action count: %d", ledService.getServiceActions().size()));
                                 System.out.println();
 
-                                for (LEDServiceAction action : ledService.getServiceActions().values()) {
-                                    System.out.println(" Type: " + action.getType().name());
-                                    if (action.getStartColour() != null) {
-                                        System.out.println(String.format("  Start Colour: %s", action.getStartColour().toString()));
+                                for (LinkedList<LEDAction> action : ledService.getServiceActions().values()) {
+                                    for (LEDAction ledAction : action) {
+                                        if (ledAction.getStartColour() != null) {
+                                            System.out.println(String.format("  Start Colour: %s", ledAction.getStartColour().toString()));
+                                        }
+
+                                        if (ledAction.getEndColour() != null) {
+                                            System.out.println(String.format("  End Colour: %s", ledAction.getEndColour().toString()));
+                                        }
+
+                                        System.out.println(String.format("  Timer: %d", ledAction.getActionLife()));
+                                        System.out.println();
                                     }
-
-                                    if (action.getEndColour() != null) {
-                                        System.out.println(String.format("  End Colour: %s", action.getEndColour().toString()));
-                                    }
-
-                                    System.out.println(String.format("  Timer: %d", action.getActionLife()));
-
-                                    System.out.println();
                                 }
 
                                 System.out.println("End Information");
@@ -140,14 +140,6 @@ public class LEDHub {
                 }
             }
         }
-    }
-
-    private void startWebserver() throws Exception {
-        Tomcat tomcat = new Tomcat();
-        tomcat.setPort(configHandler.getMainConfiguration().getWebserverPort());
-        tomcat.getHost().setAppBase(".");
-        tomcat.addWebapp("/", ".");
-        tomcat.start();
     }
 
     /**
@@ -175,6 +167,7 @@ public class LEDHub {
         serviceHandler.processQueue();
 
         new CSGOHook().init();
+        new RocketLeagueHook().init();
     }
 
     public void restart() {
