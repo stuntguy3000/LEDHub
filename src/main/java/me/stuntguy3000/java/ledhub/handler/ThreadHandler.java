@@ -13,19 +13,20 @@ import java.util.LinkedList;
 public class ThreadHandler {
     private LEDActionExecutor ledActionExecutor;
 
-    public Thread getNewTask(LEDAction ledAction) {
+    public Thread getNewTask(LEDAction ledAction, boolean processQueue) {
         LinkedList<LEDAction> ledActions = new LinkedList<>();
         ledActions.add(ledAction);
 
-        return getNewTask(ledActions);
+        return getNewTask(ledActions, processQueue);
     }
 
-    public LEDActionExecutor getNewTask(LinkedList<LEDAction> actions) {
+    public LEDActionExecutor getNewTask(LinkedList<LEDAction> actions, boolean processQueue) {
         if (ledActionExecutor != null) {
             ledActionExecutor.interrupt();
+            System.out.println("Interrupting");
         }
 
-        ledActionExecutor = new LEDActionExecutor(actions);
+        ledActionExecutor = new LEDActionExecutor(actions, processQueue);
         return ledActionExecutor;
     }
 }

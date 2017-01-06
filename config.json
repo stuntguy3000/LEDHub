@@ -198,6 +198,94 @@
             "ledServiceQueueCondition": "ALWAYS_QUEUE",
             "actionLife": 2000
           }
+        ],
+        "Game Close": [
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 44,
+              "g": 100,
+              "b": 255
+            },
+            "endColour": {
+              "r": 255,
+              "g": 69,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 1000
+          },
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 255,
+              "g": 69,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 1000,
+            "endDelay": 1000
+          }
+        ],
+        "Boost 0-20": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 255,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE"
+          }
+        ],
+        "Boost 21-40": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 125,
+              "g": 0,
+              "b": 225
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE"
+          }
+        ],
+        "Boost 41-60": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 255,
+              "g": 77,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE"
+          }
+        ],
+        "Boost 61-80": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 255,
+              "g": 255,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE"
+          }
+        ],
+        "Boost 81-100": [
+          {
+            "type": "STATIC",
+            "endColour": {
+              "r": 0,
+              "g": 255,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE"
+          }
         ]
       }
     }

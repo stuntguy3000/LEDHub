@@ -18,6 +18,7 @@ import java.util.LinkedList;
 public class LEDActionExecutor extends Thread {
 
     private LinkedList<LEDAction> actions;
+    private boolean processQueue;
 
     @Override
     public void run() {
@@ -46,12 +47,14 @@ public class LEDActionExecutor extends Thread {
                             for (int i = 0; i < playCount; i++) {
                                 TimerHandler.fadeColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
                             }
+                            processQueue = true;
                             break;
                         }
                         case CUT: {
                             for (int i = 0; i < playCount; i++) {
                                 TimerHandler.cutColours(action.getStartColour(), action.getEndColour(), action.getActionLife());
                             }
+                            processQueue = true;
                             break;
                         }
                     }
@@ -62,7 +65,9 @@ public class LEDActionExecutor extends Thread {
                 }
             }
 
-            LEDHub.getInstance().getServiceHandler().processQueue();
+            if (processQueue) {
+                LEDHub.getInstance().getServiceHandler().processQueue();
+            }
         } catch (InterruptedException ignore) {
 
         }
