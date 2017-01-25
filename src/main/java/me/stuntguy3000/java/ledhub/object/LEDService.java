@@ -10,7 +10,6 @@ import java.util.LinkedList;
  */
 @Data
 public class LEDService {
-
     private String serviceName;
     private HashMap<String, LinkedList<LEDAction>> serviceActions;
 

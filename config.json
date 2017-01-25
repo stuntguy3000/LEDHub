@@ -323,6 +323,43 @@
           }
         ]
       }
+    },
+    {
+      "serviceName": "HiveMC BlockParty",
+      "serviceActions": {
+        "Game Open": [
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 255,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE",
+            "actionLife": 500
+          },
+          {
+            "type": "TRANSITION",
+            "startColour": {
+              "r": 255,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "JUMP_QUEUE",
+            "actionLife": 500
+          }
+        ]
+      }
     }
   ],
   "backgrounds": [
