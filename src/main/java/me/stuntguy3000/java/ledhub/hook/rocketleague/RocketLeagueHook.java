@@ -13,10 +13,10 @@ import java.net.Socket;
 /**
  * @author stuntguy3000
  */
-public class RocketLeagueHook {
-    public void init() {
+public class RocketLeagueHook implements Runnable {
+    public void run () {
         try {
-            ServerSocket serverSocket = new ServerSocket(1133);
+            ServerSocket serverSocket = new ServerSocket(1000);
             Socket clientSocket = serverSocket.accept();
             BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
             int dataBuffer;

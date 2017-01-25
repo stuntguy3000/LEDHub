@@ -5,6 +5,7 @@ import lombok.Data;
 import me.stuntguy3000.java.ledhub.LEDHub;
 import me.stuntguy3000.java.ledhub.object.LEDAction;
 import me.stuntguy3000.java.ledhub.object.LEDBackground;
+import me.stuntguy3000.java.ledhub.object.LEDColour;
 import me.stuntguy3000.java.ledhub.object.LEDService;
 import me.stuntguy3000.java.ledhub.object.config.MainConfiguration;
 
@@ -12,7 +13,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
+import java.awt.image.BufferedImage;
 import java.util.LinkedList;
 import java.util.Map;
 
@@ -20,15 +21,31 @@ import java.util.Map;
  * @author stuntguy3000
  */
 public class AppHandler {
+    private BufferedImage image;
+    private TrayIcon trayIcon;
+
+    public void updateImage(LEDColour ledColour) {
+        //Graphics2D graphics = image.createGraphics();
+
+        //graphics.setColor(new Color(ledColour.getR(), ledColour.getG(), ledColour.getB()));
+        //graphics.fillRect(39, 25, 50, 26);
+        //graphics.fillOval(39, 5, 50, 20);
+
+        //trayIcon.setImage(image);
+    }
+
     public void showUI() {
         SystemTray systemTray = SystemTray.getSystemTray();
-        TrayIcon trayIcon;
+
         try {
-            trayIcon = new TrayIcon(ImageIO.read(getClass().getResource("/icon.png")));
-        } catch (IOException e) {
+            image = ImageIO.read(getClass().getResource("/icon.png"));
+            trayIcon = new TrayIcon(image);
+        } catch (Exception e) {
             e.printStackTrace();
             return;
         }
+
+        trayIcon.setImage(image);
 
         PopupMenu trayPopupMenu = new PopupMenu();
 

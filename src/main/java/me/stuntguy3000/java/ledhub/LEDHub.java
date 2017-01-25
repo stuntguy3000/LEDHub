@@ -3,12 +3,7 @@ package me.stuntguy3000.java.ledhub;
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.handler.*;
 import me.stuntguy3000.java.ledhub.hook.csgo.CSGOHook;
-import me.stuntguy3000.java.ledhub.hook.rocketleague.RocketLeagueHook;
-import me.stuntguy3000.java.ledhub.object.LEDAction;
-import me.stuntguy3000.java.ledhub.object.LEDService;
-
-import java.util.Arrays;
-import java.util.LinkedList;
+import me.stuntguy3000.java.ledhub.hook.hivemc.HiveMCHook;
 
 /**
  * @author stuntguy3000
@@ -59,86 +54,8 @@ public class LEDHub {
             e.printStackTrace();
         }
 
-        // Command System
         while (true) {
-            String fullCommand = System.console().readLine();
-            String commandLabel = fullCommand.toLowerCase();
-            String[] args = fullCommand.split(" ");
 
-            if (args.length > 1) {
-                args = Arrays.copyOfRange(args, 1, args.length);
-            } else {
-                args = null;
-            }
-
-            if (commandLabel.contains(" ")) {
-                commandLabel = commandLabel.split(" ")[0];
-            }
-
-            switch (commandLabel) {
-                default: {
-                    System.out.println("Unknown command!");
-                    continue;
-                }
-                case "exit":
-                case "end":
-                case "stop": {
-                    System.exit(0);
-                    continue;
-                }
-                case "service": {
-                    if (!(args == null)) {
-                        if (args.length == 1) {
-                            if (args[0].equalsIgnoreCase("list")) {
-                                for (LEDService ledService : getServiceHandler().getAllServices()) {
-                                    System.out.println(String.format("Service %s has %d action(s).", ledService.getServiceName(), ledService.getServiceActions().size()));
-                                }
-
-                                continue;
-                            }
-
-                            LEDService service = getServiceHandler().getService(args[0]);
-
-                            if (service != null) {
-                                getServiceHandler().addToServiceQueue(service);
-                                continue;
-                            }
-                        } else if (args.length == 2 && args[0].equalsIgnoreCase("info")) {
-                            LEDService ledService = getServiceHandler().getService(args[1]);
-                            if (ledService == null) {
-                                System.out.println("Unknown service!");
-                            } else {
-                                System.out.println("====== Service " + ledService.getServiceName() + " info ======");
-                                System.out.println(String.format(" LED Action count: %d", ledService.getServiceActions().size()));
-                                System.out.println();
-
-                                for (LinkedList<LEDAction> action : ledService.getServiceActions().values()) {
-                                    for (LEDAction ledAction : action) {
-                                        if (ledAction.getStartColour() != null) {
-                                            System.out.println(String.format("  Start Colour: %s", ledAction.getStartColour().toString()));
-                                        }
-
-                                        if (ledAction.getEndColour() != null) {
-                                            System.out.println(String.format("  End Colour: %s", ledAction.getEndColour().toString()));
-                                        }
-
-                                        System.out.println(String.format("  Timer: %d", ledAction.getActionLife()));
-                                        System.out.println();
-                                    }
-                                }
-
-                                System.out.println("End Information");
-                            }
-                            continue;
-                        }
-                    }
-
-                    System.out.println("service command help:");
-                    System.out.println("service list - View list of services");
-                    System.out.println("service info <service> - View information on service");
-                    System.out.println("service <service> - Activate service");
-                }
-            }
         }
     }
 
@@ -159,15 +76,14 @@ public class LEDHub {
             MULTIPLIER = 1;
         }
 
-        /**
-         * Connect to the Serial port
-         */
+        // Connect to the Serial port
         appHandler.showUI();
         serialHandler.connectPort();
         serviceHandler.processQueue();
 
         new CSGOHook().init();
-        new RocketLeagueHook().init();
+        //new Thread(new RocketLeagueHook()).start();
+        new Thread(new HiveMCHook()).start();
     }
 
     public void restart() {

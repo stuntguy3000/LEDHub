@@ -23,7 +23,6 @@ public class ThreadHandler {
     public LEDActionExecutor getNewTask(LinkedList<LEDAction> actions, boolean processQueue) {
         if (ledActionExecutor != null) {
             ledActionExecutor.interrupt();
-            System.out.println("Interrupting");
         }
 
         ledActionExecutor = new LEDActionExecutor(actions, processQueue);

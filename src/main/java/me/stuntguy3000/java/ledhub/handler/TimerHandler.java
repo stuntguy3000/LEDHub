@@ -39,6 +39,7 @@ public class TimerHandler {
 
             LEDColour ledColour = new LEDColour(Math.round(r), Math.round(g), Math.round(b));
             LEDHub.getInstance().getSerialHandler().sendData(ledColour.getString(LEDHub.MULTIPLIER));
+            LEDHub.getInstance().getAppHandler().updateImage(ledColour);
 
             Thread.sleep(1);
         }
@@ -46,15 +47,19 @@ public class TimerHandler {
 
     public static void flashColour(LEDColour ledColour, LEDColour defaultColour, int i) throws InterruptedException {
         LEDHub.getInstance().getSerialHandler().sendData(ledColour.getString(LEDHub.MULTIPLIER));
+        LEDHub.getInstance().getAppHandler().updateImage(ledColour);
         Thread.sleep(i);
         LEDHub.getInstance().getSerialHandler().sendData(defaultColour.getString(LEDHub.MULTIPLIER));
+        LEDHub.getInstance().getAppHandler().updateImage(ledColour);
     }
 
     public static void cutColours(LEDColour startColour, LEDColour endColour, long actionLife) throws InterruptedException {
         LEDHub.getInstance().getSerialHandler().sendData(startColour.getString(LEDHub.MULTIPLIER));
+        LEDHub.getInstance().getAppHandler().updateImage(startColour);
         Thread.sleep(actionLife / 2);
 
         LEDHub.getInstance().getSerialHandler().sendData(endColour.getString(LEDHub.MULTIPLIER));
+        LEDHub.getInstance().getAppHandler().updateImage(endColour);
         Thread.sleep(actionLife / 2);
     }
 }
