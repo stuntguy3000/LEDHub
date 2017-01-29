@@ -7,10 +7,16 @@ import me.stuntguy3000.java.ledhub.object.LEDColour;
  * @author stuntguy3000
  */
 public class TimerHandler {
-    public static void fadeColours(LEDColour endColour, long totalTime) throws InterruptedException {
-        fadeColours(new LEDColour(0, 0, 0), endColour, totalTime);
-    }
-
+    /**
+     * Fade between two LEDColour's over totalTime
+     * <p>Warning: It is important to consider that totalTime will not reflect an accurate total amount of time taken to fade.</p>
+     * <p>There is a very slight delay when sending the serial data.</p>
+     *
+     * @param current
+     * @param end
+     * @param totalTime
+     * @throws InterruptedException
+     */
     public static void fadeColours(LEDColour current, LEDColour end, long totalTime) throws InterruptedException {
         float differenceR = end.getR() - current.getR();
         float differenceG = end.getG() - current.getG();
@@ -37,20 +43,19 @@ public class TimerHandler {
             g += updateAmountG;
             b += updateAmountB;
 
+            long systemTimeOneSecond = System.nanoTime() + 1000000;
+
             LEDColour ledColour = new LEDColour(Math.round(r), Math.round(g), Math.round(b));
             LEDHub.getInstance().getSerialHandler().sendData(ledColour.getString(LEDHub.MULTIPLIER));
             LEDHub.getInstance().getAppHandler().updateImage(ledColour);
 
-            Thread.sleep(1);
+            boolean oneSecond = true;
+            while (oneSecond) {
+                if (System.nanoTime() >= systemTimeOneSecond) {
+                    oneSecond = false;
+                }
+            }
         }
-    }
-
-    public static void flashColour(LEDColour ledColour, LEDColour defaultColour, int i) throws InterruptedException {
-        LEDHub.getInstance().getSerialHandler().sendData(ledColour.getString(LEDHub.MULTIPLIER));
-        LEDHub.getInstance().getAppHandler().updateImage(ledColour);
-        Thread.sleep(i);
-        LEDHub.getInstance().getSerialHandler().sendData(defaultColour.getString(LEDHub.MULTIPLIER));
-        LEDHub.getInstance().getAppHandler().updateImage(ledColour);
     }
 
     public static void cutColours(LEDColour startColour, LEDColour endColour, long actionLife) throws InterruptedException {

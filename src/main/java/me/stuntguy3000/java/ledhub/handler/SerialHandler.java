@@ -14,7 +14,7 @@ public class SerialHandler {
     private SerialPort serialPort;
 
     public void sendData(String data) {
-        if (lastSent.isEmpty() || !lastSent.equalsIgnoreCase(data)) {
+        if (lastSent.isEmpty() || !lastSent.equals(data)) {
             try {
                 lastSent = data;
                 serialPort.writeString(data);
