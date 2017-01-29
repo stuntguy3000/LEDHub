@@ -40,13 +40,4 @@ public class SerialHandler {
             e.printStackTrace();
         }
     }
-
-    public boolean closePort() {
-        try {
-            return serialPort.closePort();
-        } catch (SerialPortException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
 }

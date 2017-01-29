@@ -35,19 +35,24 @@ public class HiveMCHook implements Runnable {
         ServiceHandler serviceHandler = LEDHub.getInstance().getServiceHandler();
 
         get("/hivemc/load", (request, response) -> {
-            System.out.println("HiveMC Load");
             serviceHandler.setServiceBackground(null);
             return "";
         });
 
         get("/hivemc/joinserver", (request, response) -> {
-            System.out.println("HiveMC JoinServer");
-            LEDAction ledAction = new LEDAction(LEDServiceActionType.STATIC, null,
+            LEDAction yellowToOrange = new LEDAction(LEDServiceActionType.TRANSITION,
                     new LEDColour(255, 255, 0),
-                    LEDServiceQueueCondition.JUMP_QUEUE, -1);
+                    new LEDColour(255, 69, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 5000, 1);
+
+            LEDAction orangeToYellow = new LEDAction(LEDServiceActionType.TRANSITION,
+                    new LEDColour(255, 69, 0),
+                    new LEDColour(255, 255, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 5000, 1);
 
             LinkedList<LEDAction> actions = new LinkedList<>();
-            actions.add(ledAction);
+            actions.add(yellowToOrange);
+            actions.add(orangeToYellow);
 
             serviceHandler.setServiceBackground(new LEDBackground(
                     null, actions, false
@@ -56,9 +61,73 @@ public class HiveMCHook implements Runnable {
             return "";
         });
 
+        get("/hivemc/choosesong", (request, response) -> {
+            LinkedList<LEDAction> actions = new LinkedList<>();
+            LEDAction yellowFade = new LEDAction(LEDServiceActionType.TRANSITION,
+                    new LEDColour(255, 255, 0),
+                    new LEDColour(0, 0, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
+            LEDAction orangeFade = new LEDAction(LEDServiceActionType.TRANSITION,
+                    new LEDColour(255, 69, 0),
+                    new LEDColour(0, 0, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
+            LEDAction red = new LEDAction(LEDServiceActionType.STATIC,
+                    null,
+                    new LEDColour(255, 0, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
+            LEDAction yellow = new LEDAction(LEDServiceActionType.STATIC,
+                    null,
+                    new LEDColour(255, 255, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
+            LEDAction orange = new LEDAction(LEDServiceActionType.STATIC,
+                    null,
+                    new LEDColour(255, 69, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
+            LEDAction green = new LEDAction(LEDServiceActionType.STATIC,
+                    null,
+                    new LEDColour(0, 255, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
+            LEDAction greenToBlack = new LEDAction(LEDServiceActionType.TRANSITION,
+                    new LEDColour(0, 255, 0),
+                    new LEDColour(0, 0, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000, 5000);
+
+            actions.add(yellowFade);
+            actions.add(orangeFade);
+            actions.add(yellowFade);
+            actions.add(orangeFade);
+            actions.add(yellowFade);
+            actions.add(orangeFade);
+            actions.add(red);
+            actions.add(orange);
+            actions.add(yellow);
+            actions.add(green);
+            actions.add(greenToBlack);
+
+            serviceHandler.addToServiceQueue(actions);
+
+            serviceHandler.processQueue();
+            return "";
+        });
+
         get("/hivemc/stop", (request, response) -> {
-            System.out.println("HiveMC Stop");
-            serviceHandler.setServiceBackground(null);
+            LEDAction yellowToOrange = new LEDAction(LEDServiceActionType.TRANSITION,
+                    new LEDColour(255, 255, 0),
+                    new LEDColour(255, 69, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000, 1, 2000);
+
+            LEDAction orangeToYellow = new LEDAction(LEDServiceActionType.TRANSITION,
+                    new LEDColour(255, 69, 0),
+                    new LEDColour(255, 255, 0),
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000, 1, 2000);
+
+            LinkedList<LEDAction> actions = new LinkedList<>();
+            actions.add(yellowToOrange);
+            actions.add(orangeToYellow);
+
+            serviceHandler.setServiceBackground(new LEDBackground(
+                    null, actions, false
+            ));
             serviceHandler.processQueue();
 
             return "";

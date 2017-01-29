@@ -341,7 +341,9 @@
               "b": 0
             },
             "ledServiceQueueCondition": "JUMP_QUEUE",
-            "actionLife": 500
+            "actionLife": 500,
+            "playCount": 0,
+            "endDelay": 0
           },
           {
             "type": "TRANSITION",
@@ -356,7 +358,9 @@
               "b": 0
             },
             "ledServiceQueueCondition": "JUMP_QUEUE",
-            "actionLife": 500
+            "actionLife": 500,
+            "playCount": 0,
+            "endDelay": 0
           }
         ]
       }
