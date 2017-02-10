@@ -14,7 +14,7 @@ public class SerialHandler {
     private SerialPort serialPort;
 
     public void sendData(String data) {
-        if (lastSent.isEmpty() || !lastSent.equals(data)) {
+        if (lastSent.isEmpty() || !lastSent.equalsIgnoreCase(data)) {
             try {
                 lastSent = data;
                 serialPort.writeString(data);
@@ -39,5 +39,14 @@ public class SerialHandler {
         } catch (SerialPortException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean closePort() {
+        try {
+            return serialPort.closePort();
+        } catch (SerialPortException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

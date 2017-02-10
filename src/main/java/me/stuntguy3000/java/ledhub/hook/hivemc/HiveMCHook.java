@@ -86,11 +86,11 @@ public class HiveMCHook implements Runnable {
             LEDAction green = new LEDAction(LEDServiceActionType.STATIC,
                     null,
                     new LEDColour(0, 255, 0),
-                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000, 1, 5000);
             LEDAction greenToBlack = new LEDAction(LEDServiceActionType.TRANSITION,
                     new LEDColour(0, 255, 0),
                     new LEDColour(0, 0, 0),
-                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000, 5000);
+                    LEDServiceQueueCondition.ALWAYS_QUEUE, 1000);
 
             actions.add(yellowFade);
             actions.add(orangeFade);

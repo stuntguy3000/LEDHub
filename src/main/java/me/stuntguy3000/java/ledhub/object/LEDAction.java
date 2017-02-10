@@ -55,7 +55,7 @@ public class LEDAction implements Cloneable {
         this.endDelay = -1;
     }
 
-    public LEDAction(LEDServiceActionType type, LEDColour startColour, LEDColour endColour, LEDServiceQueueCondition ledServiceQueueCondition, long actionLife, int playCount, int endDelay) {
+    public LEDAction(LEDServiceActionType type, LEDColour startColour, LEDColour endColour, LEDServiceQueueCondition ledServiceQueueCondition, long actionLife, int playCount, long endDelay) {
         this.type = type;
         this.startColour = startColour;
         this.endColour = endColour;
@@ -67,6 +67,6 @@ public class LEDAction implements Cloneable {
 
     @Override
     public LEDAction clone() {
-        return new LEDAction(type, startColour, endColour, ledServiceQueueCondition, actionLife, playCount);
+        return new LEDAction(type, startColour, endColour, ledServiceQueueCondition, actionLife, playCount, endDelay);
     }
 }

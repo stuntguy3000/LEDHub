@@ -43,28 +43,17 @@ public class TimerHandler {
             g += updateAmountG;
             b += updateAmountB;
 
-            long systemTimeOneSecond = System.nanoTime() + 1000000;
-
             LEDColour ledColour = new LEDColour(Math.round(r), Math.round(g), Math.round(b));
             LEDHub.getInstance().getSerialHandler().sendData(ledColour.getString(LEDHub.MULTIPLIER));
-            LEDHub.getInstance().getAppHandler().updateImage(ledColour);
 
-            boolean oneSecond = true;
-            while (oneSecond) {
-                if (System.nanoTime() >= systemTimeOneSecond) {
-                    oneSecond = false;
-                }
-            }
+            Thread.sleep(1);
         }
     }
 
     public static void cutColours(LEDColour startColour, LEDColour endColour, long actionLife) throws InterruptedException {
         LEDHub.getInstance().getSerialHandler().sendData(startColour.getString(LEDHub.MULTIPLIER));
-        LEDHub.getInstance().getAppHandler().updateImage(startColour);
         Thread.sleep(actionLife / 2);
-
         LEDHub.getInstance().getSerialHandler().sendData(endColour.getString(LEDHub.MULTIPLIER));
-        LEDHub.getInstance().getAppHandler().updateImage(endColour);
         Thread.sleep(actionLife / 2);
     }
 }
