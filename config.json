@@ -1,6 +1,13 @@
 {
   "serialPort": "com3",
   "ledMultiplier": 1.0,
+  "ledSettings": {
+    "maxRed": 255,
+    "maxGreen": 255,
+    "maxBlue": 255,
+    "multipier": 1.0,
+    "logitech": true
+  },
   "services": [
     {
       "serviceName": "Counter Strike: Global Offensive",
@@ -36,6 +43,23 @@
               "r": 0,
               "g": 255,
               "b": 255
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 200,
+            "playCount": 0,
+            "endDelay": 0
+          },
+          {
+            "type": "CUT",
+            "startColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 255,
+              "b": 0
             },
             "ledServiceQueueCondition": "ALWAYS_QUEUE",
             "actionLife": 200,
@@ -99,8 +123,8 @@
               "b": 0
             },
             "ledServiceQueueCondition": "ALWAYS_QUEUE",
-            "actionLife": 125,
-            "playCount": 0,
+            "actionLife": 1000,
+            "playCount": 45,
             "endDelay": 0
           }
         ],
@@ -129,6 +153,23 @@
             "endColour": {
               "r": 255,
               "g": 165,
+              "b": 0
+            },
+            "ledServiceQueueCondition": "ALWAYS_QUEUE",
+            "actionLife": 200,
+            "playCount": 0,
+            "endDelay": 0
+          },
+          {
+            "type": "CUT",
+            "startColour": {
+              "r": 0,
+              "g": 0,
+              "b": 0
+            },
+            "endColour": {
+              "r": 0,
+              "g": 255,
               "b": 0
             },
             "ledServiceQueueCondition": "ALWAYS_QUEUE",

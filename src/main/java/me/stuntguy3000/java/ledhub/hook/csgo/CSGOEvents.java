@@ -84,24 +84,19 @@ public class CSGOEvents implements PostHandler {
 
     @Override
     public void bombPlanted() {
-        /*bombFlashing = true;
+        bombFlashing = true;
 
-        LEDService service = serviceHandler.getService("csgo");
+        LEDService service = serviceHandler.getService("Counter Strike: Global Offensive");
         LinkedList<LEDAction> bombFlash = service.getServiceActions().get("bombFlash");
 
-        if (bombFlash != null) {
-            for (int i = 0; i < 45; i++) {
-                newBombFlash.setActionLife(1000);
-                serviceHandler.addToServiceQueue(newBombFlash);
-            }
-        }*/
+        serviceHandler.addToServiceQueue(bombFlash);
     }
 
     @Override
     public void bombExploded() {
         if (bombFlashing) {
             bombFlashing = false;
-            LEDService service = serviceHandler.getService("csgo");
+            LEDService service = serviceHandler.getService("Counter Strike: Global Offensive");
             LinkedList<LEDAction> bombExplode1 = service.getServiceActions().get("bombExplode1");
             LinkedList<LEDAction> bombExplode2 = service.getServiceActions().get("bombExplode2");
             LinkedList<LEDAction> black = service.getServiceActions().get("black");
@@ -120,7 +115,7 @@ public class CSGOEvents implements PostHandler {
     public void bombDefused() {
         if (bombFlashing) {
             bombFlashing = false;
-            LEDService service = serviceHandler.getService("csgo");
+            LEDService service = serviceHandler.getService("Counter Strike: Global Offensive");
             LinkedList<LEDAction> bombDefuse1 = service.getServiceActions().get("bombDefuse1");
             LinkedList<LEDAction> bombDefuse2 = service.getServiceActions().get("bombDefuse2");
             LinkedList<LEDAction> black = service.getServiceActions().get("black");
@@ -138,14 +133,14 @@ public class CSGOEvents implements PostHandler {
     @Override
     public void roundWinningTeamChange(String teamName) {
         if (teamName.equalsIgnoreCase("T")) {
-            LEDService service = serviceHandler.getService("csgo");
+            LEDService service = serviceHandler.getService("Counter Strike: Global Offensive");
 
             for (int i = 0; i < 5; i++) {
                 LinkedList<LEDAction> team = service.getServiceActions().get("tTeamWin");
                 serviceHandler.addToServiceQueue(team);
             }
         } else {
-            LEDService service = serviceHandler.getService("csgo");
+            LEDService service = serviceHandler.getService("Counter Strike: Global Offensive");
 
             for (int i = 0; i < 5; i++) {
                 LinkedList<LEDAction> team = service.getServiceActions().get("ctTeamWin");
@@ -207,14 +202,14 @@ public class CSGOEvents implements PostHandler {
             serviceHandler.setServiceBackground(
                     new LEDBackground(
                             "ct",
-                            serviceHandler.getService("csgo").getServiceActions().get("ctTeam"),
+                            serviceHandler.getService("Counter Strike: Global Offensive").getServiceActions().get("ctTeam"),
                             false));
             serviceHandler.processQueue();
             currentTeam = "ct";
         } else {
             serviceHandler.setServiceBackground(
                     new LEDBackground(
-                            "t", serviceHandler.getService("csgo").getServiceActions().get("tTeam"),
+                            "t", serviceHandler.getService("Counter Strike: Global Offensive").getServiceActions().get("tTeam"),
                             false));
             serviceHandler.processQueue();
             currentTeam = "t";
@@ -239,10 +234,10 @@ public class CSGOEvents implements PostHandler {
 
         if (health < 100 && health > 0) {
             ServiceHandler serviceHandler = LEDHub.getInstance().getServiceHandler();
-            serviceHandler.addToServiceQueue(serviceHandler.getService("csgo").getServiceActions().get("onHitRed"));
+            serviceHandler.addToServiceQueue(serviceHandler.getService("Counter Strike: Global Offensive").getServiceActions().get("onHitRed"));
         } else if (health == 0) {
             ServiceHandler serviceHandler = LEDHub.getInstance().getServiceHandler();
-            serviceHandler.addToServiceQueue(serviceHandler.getService("csgo").getServiceActions().get("onDeath"));
+            serviceHandler.addToServiceQueue(serviceHandler.getService("Counter Strike: Global Offensive").getServiceActions().get("onDeath"));
         }
     }
 

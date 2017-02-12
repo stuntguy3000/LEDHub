@@ -1,5 +1,6 @@
 package me.stuntguy3000.java.ledhub;
 
+import com.logitech.gaming.LogiLED;
 import lombok.Getter;
 import me.stuntguy3000.java.ledhub.handler.*;
 import me.stuntguy3000.java.ledhub.hook.csgo.CSGOHook;
@@ -46,6 +47,13 @@ public class LEDHub {
      */
     private void main() {
         instance = this;
+        LogiLED.LogiLedInit();
+
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         // Register Handlers/Start Webserver
         try {
