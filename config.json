@@ -1,13 +1,6 @@
 {
   "serialPort": "com3",
-  "ledMultiplier": 1.0,
-  "ledSettings": {
-    "maxRed": 255,
-    "maxGreen": 255,
-    "maxBlue": 255,
-    "multipier": 1.0,
-    "logitech": true
-  },
+  "ledMultiplier": 0.0,
   "services": [
     {
       "serviceName": "Counter Strike: Global Offensive",
