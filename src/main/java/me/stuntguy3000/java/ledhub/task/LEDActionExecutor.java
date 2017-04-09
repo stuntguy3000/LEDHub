@@ -35,7 +35,6 @@ public class LEDActionExecutor extends Thread {
                         case STATIC: {
                             for (int i = 0; i < playCount; i++) {
                                 LEDHub.getInstance().getSerialHandler().sendData(action.getEndColour());
-                                LEDHub.getInstance().getAppHandler().updateImage(action.getEndColour());
                                 long expireTime = action.getActionLife();
 
                                 if (expireTime > 0) {
