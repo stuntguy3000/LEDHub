@@ -1,6 +1,5 @@
 package me.stuntguy3000.java.ledhub.handler;
 
-import com.logitech.gaming.LogiLED;
 import jssc.SerialPort;
 import jssc.SerialPortException;
 import lombok.Data;
@@ -23,6 +22,7 @@ public class SerialHandler {
                 lastSent = serialMessage;
                 serialPort.writeString(serialMessage);
 
+                /*
                 if (System.nanoTime() - lastSentTime > 1e+6) {
                     float r = (float) ledColour.getR() / 255;
                     float g = (float) ledColour.getG() / 255;
@@ -30,7 +30,7 @@ public class SerialHandler {
                     lastSentTime = System.nanoTime();
 
                     LogiLED.LogiLedSetLighting((int) (r * 100), (int) (g * 100), (int) (b * 100));
-                }
+                }*/
             } catch (SerialPortException e) {
                 e.printStackTrace();
             }

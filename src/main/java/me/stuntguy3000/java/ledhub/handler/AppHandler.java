@@ -41,16 +41,6 @@ public class AppHandler {
         ServiceHandler serviceHandler = LEDHub.getInstance().getServiceHandler();
         MainConfiguration mainConfiguration = LEDHub.getInstance().getConfigHandler().getMainConfiguration();
 
-        // Multiplier
-        Menu multiplierMenu = new Menu("Multiplier");
-
-        for (int i = 0; i <= 100; i += 10) {
-            MenuItem multiplierOption = new MenuItem(String.valueOf(i) + "%");
-            multiplierOption.addActionListener(new MultiplierChangeItem(i));
-            multiplierMenu.add(multiplierOption);
-        }
-        trayPopupMenu.add(multiplierMenu);
-
         // Backgrounds
         Menu backgroundsMenu = new Menu("Backgrounds");
 
@@ -76,6 +66,16 @@ public class AppHandler {
             servicesMenu.add(subMenu);
         }
         trayPopupMenu.add(servicesMenu);
+
+        // Multiplier
+        Menu multiplierMenu = new Menu("Multiplier");
+
+        for (int i = 0; i <= 100; i += 10) {
+            MenuItem multiplierOption = new MenuItem(String.valueOf(i) + "%");
+            multiplierOption.addActionListener(new MultiplierChangeItem(i));
+            multiplierMenu.add(multiplierOption);
+        }
+        trayPopupMenu.add(multiplierMenu);
 
         // Standard Options
         MenuItem action = new MenuItem("Restart");

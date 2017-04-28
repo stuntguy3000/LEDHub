@@ -13,11 +13,11 @@ import java.util.LinkedList;
 public class ThreadHandler {
     private LEDActionExecutor ledActionExecutor;
 
-    public Thread getNewTask(LEDAction ledAction, boolean processQueue) {
+    public Thread getNewTask(LEDAction ledAction) {
         LinkedList<LEDAction> ledActions = new LinkedList<>();
         ledActions.add(ledAction);
 
-        return getNewTask(ledActions, processQueue);
+        return getNewTask(ledActions, true);
     }
 
     public LEDActionExecutor getNewTask(LinkedList<LEDAction> actions, boolean processQueue) {
