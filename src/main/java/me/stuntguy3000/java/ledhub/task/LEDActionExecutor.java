@@ -41,10 +41,6 @@ public class LEDActionExecutor extends Thread {
                                     Thread.sleep(expireTime);
                                 }
                             }
-
-                            if (action.getPlayCount() == 0) {
-                                processQueue = false;
-                            }
                             break;
                         }
                         case TRANSITION: {
